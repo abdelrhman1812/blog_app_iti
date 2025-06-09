@@ -1,20 +1,17 @@
 import { useAuth } from "@/context/AuthContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
 import { toast } from "react-toastify";
-import postRequest from "../handleRequest/PostRequest";
+import deleteRequest from "../handleRequest/DeleteRequest";
 
-const useAddData = (url, mutationKeys, invalidateQueryKey) => {
+const useDeleteData = (url, mutationKeys, invalidateQueryKey) => {
   const { token } = useAuth();
-
   const queryClient = useQueryClient();
-  const [requestData, setRequestData] = useState(null);
 
   const mutation = useMutation({
     mutationKey: mutationKeys,
-    mutationFn: async (data) => {
-      setRequestData(data);
-      return postRequest(url, data, token);
+    mutationFn: async (id) => {
+      let updateUrl = `${url}/${id}`;
+      return deleteRequest(updateUrl, token);
     },
     onMutate: () => {
       const loadingToast = toast.loading("Processing...", {
@@ -55,10 +52,7 @@ const useAddData = (url, mutationKeys, invalidateQueryKey) => {
     },
   });
 
-  return {
-    requestData,
-    ...mutation,
-  };
+  return { ...mutation };
 };
 
-export default useAddData;
+export default useDeleteData;

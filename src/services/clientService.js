@@ -5,12 +5,12 @@ const clientApi = axios.create({
 });
 
 export const request = async (options, token) => {
+  console.log(options);
   try {
     if (token) {
       clientApi.defaults.headers.token = token;
     }
     const res = await clientApi.request(options);
-    // console.log(res);
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {

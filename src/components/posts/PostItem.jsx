@@ -1,11 +1,33 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/context/AuthContext";
+import { useDeletePost } from "@/hooks/Actions/posts/usePostsCurds";
 import formatDate from "@/utils/formatDate";
+import { Edit, Trash } from "lucide-react";
+import { useState } from "react";
 import CommentList from "../comments/CommentList";
 import PostDetails from "./PostDetails";
 
 const PostItem = ({ post }) => {
+  const { user } = useAuth();
+  const [, setSelectedPost] = useState(null);
+  const { mutate: deletePost, isPending: isPendingDelete } = useDeletePost();
+
+  const handleDeletePost = (post) => {
+    setSelectedPost(post?._id);
+    deletePost(post?._id);
+  };
+  const handleEdit = (post) => {
+    setSelectedPost(post?._id);
+  };
   return (
     <Card>
       <CardHeader className="pb-3">
@@ -27,9 +49,33 @@ const PostItem = ({ post }) => {
               </p>
             </div>
           </div>
-          <Button variant="ghost" size="sm">
-            •••
-          </Button>
+          {user?.user?._id === post.owner?._id && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm">
+                  •••
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-40">
+                <DropdownMenuItem
+                  className="focus:bg-transparent text-primary focus:text-primary/50"
+                  onClick={() => handleEdit(post)}
+                >
+                  <Edit className="mr-2 h-4 w-4" />
+                  <span>Edit</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  disabled={isPendingDelete}
+                  onClick={() => !isPendingDelete && handleDeletePost(post)}
+                  className="text-red-600 focus:bg-transparent focus:text-error"
+                >
+                  <Trash className="mr-2 h-4 w-4" />
+                  <span>Delete</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </CardHeader>
       <CardContent className="pt-0">

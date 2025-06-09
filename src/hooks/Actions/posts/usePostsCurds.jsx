@@ -1,6 +1,7 @@
 import endPoints from "@/config/endpoints";
 import queryKeys from "@/config/queryKey";
 import useAddData from "@/hooks/curdsHook/useAddData";
+import useDeleteData from "@/hooks/curdsHook/useDeleteData";
 import useGetData from "@/hooks/curdsHook/useGetData";
 
 export const useGetAllPosts = () => {
@@ -12,11 +13,20 @@ export const useGetAllPosts = () => {
   return { data, isPending, isSuccess };
 };
 
+export const useDeletePost = () => {
+  const { mutate, isPending, isSuccess } = useDeleteData(
+    endPoints.deletePosts,
+    [queryKeys.postsDelete],
+    queryKeys.posts
+  );
+  return { mutate, isPending, isSuccess };
+};
+
 /*  url, mutationKeys, invalidateQueryKey */
 export const useAddPosts = () => {
   const { mutate, data, error, isPending, isSuccess, isError } = useAddData(
     endPoints.posts,
-    [queryKeys.posts],
+    [queryKeys.postsAdd],
     queryKeys.posts
   );
 

@@ -23,7 +23,7 @@ const CreatePost = () => {
     formData.append("title", title);
     formData.append("content", content);
 
-    if (fileObjects.length > 0) {
+    if (fileObjects?.length > 0) {
       fileObjects?.forEach((file) => {
         formData.append("images", file);
       });
@@ -42,7 +42,7 @@ const CreatePost = () => {
         formik.resetForm();
         setFiles([]);
         setFileObjects([]);
-        files.forEach((file) => URL.revokeObjectURL(file));
+        files?.forEach((file) => URL.revokeObjectURL(file));
       },
     });
   };
