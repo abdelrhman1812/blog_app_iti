@@ -14,6 +14,7 @@ import formatDate from "@/utils/formatDate";
 import { Edit, Trash } from "lucide-react";
 import { useState } from "react";
 import CommentList from "../comments/CommentList";
+import { EditPostModal } from "./EditPostModal";
 import PostDetails from "./PostDetails";
 
 const PostItem = ({ post }) => {
@@ -21,104 +22,121 @@ const PostItem = ({ post }) => {
   const [, setSelectedPost] = useState(null);
   const { mutate: deletePost, isPending: isPendingDelete } = useDeletePost();
 
+  /* COntroller for Box Model */
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [currentPost, setCurrentPost] = useState(null);
+
   const handleDeletePost = (post) => {
     setSelectedPost(post?._id);
     deletePost(post?._id);
   };
   const handleEdit = (post) => {
-    setSelectedPost(post?._id);
+    setCurrentPost(post);
+    setIsEditModalOpen(true);
   };
   return (
-    <Card>
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Avatar>
-              <AvatarImage
-                src={post?.owner?.image?.secure_url || "/placeholder.svg"}
-                alt={post?.owner?.userName}
-              />
-              <AvatarFallback>
-                {post?.owner?.userName?.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <h3 className="font-semibold text-sm">{post?.owner?.userName}</h3>
-              <p className="text-xs text-gray-500">
-                {formatDate(post?.createdAt)}
-              </p>
+    <>
+      {currentPost && (
+        <EditPostModal
+          post={currentPost}
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+        />
+      )}
+
+      <Card>
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <Avatar>
+                <AvatarImage
+                  src={post?.owner?.image?.secure_url || "/placeholder.svg"}
+                  alt={post?.owner?.userName}
+                />
+                <AvatarFallback>
+                  {post?.owner?.userName?.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 className="font-semibold text-sm">
+                  {post?.owner?.userName}
+                </h3>
+                <p className="text-xs text-gray-500">
+                  {formatDate(post?.createdAt)}
+                </p>
+              </div>
             </div>
+            {user?.user?._id === post.owner?._id && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    •••
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-40">
+                  <DropdownMenuItem
+                    className="focus:bg-transparent text-primary focus:text-primary/50"
+                    onClick={() => handleEdit(post)}
+                  >
+                    <Edit className="mr-2 h-4 w-4" />
+                    <span>Edit</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    disabled={isPendingDelete}
+                    onClick={() => !isPendingDelete && handleDeletePost(post)}
+                    className="text-red-600 focus:bg-transparent focus:text-error"
+                  >
+                    <Trash className="mr-2 h-4 w-4" />
+                    <span>Delete</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
-          {user?.user?._id === post.owner?._id && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm">
-                  •••
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-40">
-                <DropdownMenuItem
-                  className="focus:bg-transparent text-primary focus:text-primary/50"
-                  onClick={() => handleEdit(post)}
-                >
-                  <Edit className="mr-2 h-4 w-4" />
-                  <span>Edit</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  disabled={isPendingDelete}
-                  onClick={() => !isPendingDelete && handleDeletePost(post)}
-                  className="text-red-600 focus:bg-transparent focus:text-error"
-                >
-                  <Trash className="mr-2 h-4 w-4" />
-                  <span>Delete</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <div className="space-y-3">
-          <h2 className="text-lg font-bold">{post?.title}</h2>
-          <p className="text-gray-700">{post?.content}</p>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <div className="space-y-3">
+            <h2 className="text-lg font-bold">{post?.title}</h2>
+            <p className="text-gray-700">{post?.content}</p>
 
-          {post?.images?.length > 0 && (
-            <div
-              className={
-                post.images.length === 1
-                  ? "flex justify-center my-4"
-                  : "grid grid-cols-1 md:grid-cols-2 gap-4 my-4"
-              }
-            >
-              {post.images.map((image, index) => (
-                <div
-                  key={index}
-                  className={
-                    post.images.length === 1 ? "" : "flex justify-center"
-                  }
-                >
-                  <img
-                    src={image.secure_url}
-                    alt={`${post.title || "Post"} image ${index + 1}`}
-                    className="w-full max-w-md rounded-lg object-cover shadow-md"
-                    loading={"lazy"}
-                    onError={(e) => {
-                      e.currentTarget.src = "/placeholder.svg";
-                      e.currentTarget.alt = "Image failed to load";
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+            {post?.images?.length > 0 && (
+              <div
+                className={
+                  post.images.length === 1
+                    ? "flex justify-center my-4"
+                    : "grid grid-cols-1 md:grid-cols-2 gap-4 my-4"
+                }
+              >
+                {post.images.map((image, index) => (
+                  <div
+                    key={index}
+                    className={
+                      post.images.length === 1 ? "" : "flex justify-center"
+                    }
+                  >
+                    <img
+                      src={image.secure_url}
+                      alt={`${post.title || "Post"} image ${index + 1}`}
+                      className="w-full max-w-md rounded-lg object-cover shadow-md"
+                      loading={"lazy"}
+                      onError={(e) => {
+                        e.currentTarget.src = "/placeholder.svg";
+                        e.currentTarget.alt = "Image failed to load";
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
 
-          <PostDetails post={post} />
+            <PostDetails post={post} />
 
-          <CommentList comments={post.comments} postId={post._id} />
-        </div>
-      </CardContent>
-    </Card>
+            <CommentList comments={post.comments} postId={post._id} />
+          </div>
+        </CardContent>
+      </Card>
+    </>
   );
 };
 
