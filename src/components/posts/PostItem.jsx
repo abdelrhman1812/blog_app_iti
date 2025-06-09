@@ -13,15 +13,17 @@ const PostItem = ({ post }) => {
           <div className="flex items-center space-x-3">
             <Avatar>
               <AvatarImage
-                src={post?.owner.image.secure_url || "/placeholder.svg"}
-                alt={post?.owner.userName}
+                src={post?.owner?.image?.secure_url || "/placeholder.svg"}
+                alt={post?.owner?.userName}
               />
-              <AvatarFallback>{post.owner.userName.charAt(0)}</AvatarFallback>
+              <AvatarFallback>
+                {post?.owner?.userName?.charAt(0)}
+              </AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="font-semibold text-sm">{post.owner.userName}</h3>
+              <h3 className="font-semibold text-sm">{post?.owner?.userName}</h3>
               <p className="text-xs text-gray-500">
-                {formatDate(post.createdAt)}
+                {formatDate(post?.createdAt)}
               </p>
             </div>
           </div>
@@ -32,15 +34,18 @@ const PostItem = ({ post }) => {
       </CardHeader>
       <CardContent className="pt-0">
         <div className="space-y-3">
-          <h2 className="text-lg font-bold">{post.title}</h2>
-          <p className="text-gray-700">{post.content}</p>
-          <div className="w-full">
-            <img
-              src={post?.images[0].secure_url || "/placeholder.svg"}
-              alt="Post image"
-              className="w-full md:w-75 mx-auto rounded-lg object-cover"
-            />
-          </div>
+          <h2 className="text-lg font-bold">{post?.title}</h2>
+          <p className="text-gray-700">{post?.content}</p>
+          {post?.images[0]?.secure_url && (
+            <div className="w-full">
+              <img
+                src={post?.images[0]?.secure_url || "/placeholder.svg"}
+                alt="Post image"
+                className="w-full md:w-75 mx-auto rounded-lg object-cover"
+              />
+            </div>
+          )}
+
           <PostDetails post={post} />
 
           <CommentList comments={post.comments} postId={post._id} />

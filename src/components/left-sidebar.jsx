@@ -56,7 +56,9 @@ export default function LeftSidebar() {
               src={user?.user?.image?.secure_url}
               alt={user?.user?.userName}
             />
-            <AvatarFallback></AvatarFallback>
+            <AvatarFallback>
+              {user?.user?.userName?.charAt(0) || "U"}
+            </AvatarFallback>
           </Avatar>
           <div>
             <p className="font-medium text-sm">{user?.user?.userName}</p>
