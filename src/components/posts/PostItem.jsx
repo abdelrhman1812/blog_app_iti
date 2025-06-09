@@ -36,13 +36,34 @@ const PostItem = ({ post }) => {
         <div className="space-y-3">
           <h2 className="text-lg font-bold">{post?.title}</h2>
           <p className="text-gray-700">{post?.content}</p>
-          {post?.images[0]?.secure_url && (
-            <div className="w-full">
-              <img
-                src={post?.images[0]?.secure_url || "/placeholder.svg"}
-                alt="Post image"
-                className="w-full md:w-75 mx-auto rounded-lg object-cover"
-              />
+
+          {post?.images?.length > 0 && (
+            <div
+              className={
+                post.images.length === 1
+                  ? "flex justify-center my-4"
+                  : "grid grid-cols-1 md:grid-cols-2 gap-4 my-4"
+              }
+            >
+              {post.images.map((image, index) => (
+                <div
+                  key={index}
+                  className={
+                    post.images.length === 1 ? "" : "flex justify-center"
+                  }
+                >
+                  <img
+                    src={image.secure_url}
+                    alt={`${post.title || "Post"} image ${index + 1}`}
+                    className="w-full max-w-md rounded-lg object-cover shadow-md"
+                    loading={"lazy"}
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                      e.currentTarget.alt = "Image failed to load";
+                    }}
+                  />
+                </div>
+              ))}
             </div>
           )}
 
