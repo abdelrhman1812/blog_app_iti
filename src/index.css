@@ -1,0 +1,249 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Core colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  /* Text colors - DaisyUI style */
+
+  --color-base-content: var(--base-content);
+  --color-neutral-content: var(--neutral-content);
+  --color-neutral: var(--neutral);
+  --color-primary-content: var(--primary-content);
+  --color-secondary-content: var(--secondary-content);
+  --color-accent-content: var(--accent-content);
+  --color-success-content: var(--success-content);
+  --color-warning-content: var(--warning-content);
+  --color-error: var(--error);
+  --color-error-content: var(--error-content);
+  --color-info-content: var(--info-content);
+
+  /* UI elements */
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.65rem;
+
+  /* Base colors */
+  --background: oklch(100% 0 0);
+  --foreground: oklch(24.3% 0.014 257.5);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(24.3% 0.014 257.5);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(24.3% 0.014 257.5);
+
+  /* Brand colors */
+  --primary: oklch(44.7% 0.224 279.1);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(58.8% 0.292 328.4);
+  --secondary-foreground: oklch(100% 0 0);
+  --accent: oklch(77.2% 0.103 180.7);
+  --accent-foreground: oklch(100% 0 0);
+
+  /* Status colors */
+  --destructive: oklch(72.2% 0.14 15.2);
+  --destructive-foreground: oklch(100% 0 0);
+  --success: oklch(69.5% 0.149 162.2);
+  --success-foreground: oklch(100% 0 0);
+  --warning: oklch(83.5% 0.131 93.4);
+  --warning-foreground: oklch(20% 0.02 257.5);
+  --info: oklch(75.8% 0.1 277.8);
+  --info-foreground: oklch(100% 0 0);
+
+  /* Neutral colors */
+  --muted: oklch(96.3% 0.004 106.8);
+  --muted-foreground: oklch(49.1% 0.005 258.9);
+  --border: oklch(92.1% 0.002 106.8);
+  --input: oklch(92.1% 0.002 106.8);
+  --ring: oklch(44.7% 0.224 279.1);
+
+  /* DaisyUI-style content colors */
+  --base-content: oklch(24.3% 0.014 257.5);
+  --neutral: oklch(92.1% 0.002 106.8);
+  --neutral-content: oklch(40% 0.01 257.5);
+  --primary-content: oklch(44.7% 0.224 279.1);
+  --secondary-content: oklch(58.8% 0.292 328.4);
+  --accent-content: oklch(77.2% 0.103 180.7);
+  --success-content: oklch(55% 0.12 162.2);
+  --warning-content: oklch(70% 0.11 93.4);
+  --error: oklch(72.2% 0.14 15.2);
+  --error-content: oklch(60% 0.12 15.2);
+  --info-content: oklch(60% 0.08 277.8);
+
+  /* Chart colors */
+  --chart-1: oklch(75.8% 0.1 277.8);
+  --chart-2: oklch(82.7% 0.135 162.2);
+  --chart-3: oklch(83.5% 0.131 93.4);
+  --chart-4: oklch(87.8% 0.119 93.4);
+  --chart-5: oklch(76.9% 0.118 12.2);
+
+  /* Sidebar */
+  --sidebar: oklch(100% 0 0);
+  --sidebar-foreground: oklch(24.3% 0.014 257.5);
+  --sidebar-primary: oklch(44.7% 0.224 279.1);
+  --sidebar-primary-foreground: oklch(100% 0 0);
+  --sidebar-accent: oklch(77.2% 0.103 180.7);
+  --sidebar-accent-foreground: oklch(100% 0 0);
+  --sidebar-border: oklch(92.1% 0.002 106.8);
+  --sidebar-ring: oklch(44.7% 0.224 279.1);
+}
+
+.dark {
+  /* Base colors */
+  --background: oklch(18.9% 0.015 260.1);
+  --foreground: oklch(96.3% 0.004 106.8);
+  --card: oklch(22.1% 0.015 260.1);
+  --card-foreground: oklch(96.3% 0.004 106.8);
+  --popover: oklch(22.1% 0.015 260.1);
+  --popover-foreground: oklch(96.3% 0.004 106.8);
+
+  /* Brand colors */
+  --primary: oklch(53.2% 0.228 279.1);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(58.8% 0.292 328.4);
+  --secondary-foreground: oklch(100% 0 0);
+  --accent: oklch(77.2% 0.103 180.7);
+  --accent-foreground: oklch(100% 0 0);
+
+  /* Status colors */
+  --destructive: oklch(72.2% 0.14 15.2);
+  --destructive-foreground: oklch(100% 0 0);
+  --success: oklch(69.5% 0.149 162.2);
+  --success-foreground: oklch(100% 0 0);
+  --warning: oklch(83.5% 0.131 93.4);
+  --warning-foreground: oklch(20% 0.02 257.5);
+  --info: oklch(75.8% 0.1 277.8);
+  --info-foreground: oklch(100% 0 0);
+
+  /* Neutral colors */
+  --muted: oklch(30.5% 0.01 260.1);
+  --muted-foreground: oklch(65.8% 0.004 258.9);
+  --border: oklch(37.3% 0.006 258.9);
+  --input: oklch(31.8% 0.009 257.5);
+  --ring: oklch(53.2% 0.228 279.1);
+
+  /* DaisyUI-style content colors for dark mode */
+  --base-content: oklch(96.3% 0.004 106.8);
+  --neutral: oklch(37.3% 0.006 258.9);
+  --neutral-content: oklch(80% 0.006 258.9);
+  --primary-content: oklch(65% 0.18 279.1);
+  --secondary-content: oklch(70% 0.25 328.4);
+  --accent-content: oklch(77.2% 0.103 180.7);
+  --success-content: oklch(75% 0.13 162.2);
+  --warning-content: oklch(85% 0.12 93.4);
+  --error: oklch(72.2% 0.14 15.2);
+  --error-content: oklch(80% 0.13 15.2);
+  --info-content: oklch(80% 0.09 277.8);
+
+  /* Chart colors */
+  --chart-1: oklch(67.5% 0.159 277.8);
+  --chart-2: oklch(69.5% 0.149 162.2);
+  --chart-3: oklch(83.5% 0.131 93.4);
+  --chart-4: oklch(81% 0.126 93.4);
+  --chart-5: oklch(71.9% 0.13 12.2);
+
+  /* Sidebar */
+  --sidebar: oklch(22.1% 0.015 260.1);
+  --sidebar-foreground: oklch(96.3% 0.004 106.8);
+  --sidebar-primary: oklch(53.2% 0.228 279.1);
+  --sidebar-primary-foreground: oklch(100% 0 0);
+  --sidebar-accent: oklch(77.2% 0.103 180.7);
+  --sidebar-accent-foreground: oklch(100% 0 0);
+  --sidebar-border: oklch(37.3% 0.006 258.9);
+  --sidebar-ring: oklch(53.2% 0.228 279.1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* DaisyUI-style utility classes */
+@layer utilities {
+  .text-base-content {
+    color: var(--base-content);
+  }
+  .text-neutral-content {
+    color: var(--neutral-content);
+  }
+  .text-primary-content {
+    color: var(--primary-content);
+  }
+  .text-secondary-content {
+    color: var(--secondary-content);
+  }
+  .text-accent-content {
+    color: var(--accent-content);
+  }
+  .text-success-content {
+    color: var(--success-content);
+  }
+  .text-warning-content {
+    color: var(--warning-content);
+  }
+  .text-error-content {
+    color: var(--error-content);
+  }
+  .text-info-content {
+    color: var(--info-content);
+  }
+
+  .bg-neutral {
+    background-color: var(--neutral);
+  }
+  .bg-base-100 {
+    background-color: var(--background);
+  }
+  .bg-error {
+    background-color: var(--error);
+  }
+}
