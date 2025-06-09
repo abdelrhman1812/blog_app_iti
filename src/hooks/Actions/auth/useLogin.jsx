@@ -22,7 +22,6 @@ const useLogin = () => {
       navigate("/");
     } else if (isError) {
       console.error("Login error:", error);
-      // Show error to user (e.g., via toast)
     }
   }, [data, isSuccess, isError, error, navigate, setToken]);
 

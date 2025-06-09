@@ -10,7 +10,7 @@ export const request = async (options, token) => {
       clientApi.defaults.headers.token = token;
     }
     const res = await clientApi.request(options);
-    console.log(res);
+    // console.log(res);
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {

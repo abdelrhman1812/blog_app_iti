@@ -18,7 +18,6 @@ import {
 
 export default function LeftSidebar() {
   const { user } = useAuth();
-  console.log(user);
   const menuItems = [
     { icon: Home, label: "Home", id: "home" },
     { icon: User, label: "Profile", id: "profile" },

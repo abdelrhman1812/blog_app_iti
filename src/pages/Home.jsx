@@ -2,12 +2,11 @@ import LeftSidebar from "@/components/left-sidebar";
 import CreatePost from "@/components/posts/CreatePost";
 import PostList from "@/components/posts/PostList";
 import RightSidebar from "@/components/right-sidebar";
-import endPoints from "@/config/endpoints";
-import queryKeys from "@/config/queryKey";
-import useGetData from "@/hooks/curdsHook/useGetData";
+import PostSkeleton from "@/components/Skeleton/PostSkeleton";
+import { useGetAllPosts } from "@/hooks/Actions/posts/usePostsCurds";
 
 const Home = () => {
-  const { data } = useGetData(endPoints.posts, queryKeys.posts);
+  const { data, isPending } = useGetAllPosts();
 
   return (
     <div className="min-h-screen">
@@ -21,10 +20,14 @@ const Home = () => {
           {/* Main Content */}
           <div className="w-full md:w-2/4 lg:w-3/5 py-6">
             {/* Create Post Form */}
-
             <CreatePost />
+
             {/* Posts Feed */}
-            <PostList posts={data?.posts} />
+            {isPending ? (
+              <PostSkeleton length={data?.posts.length} />
+            ) : (
+              <PostList posts={data?.posts} />
+            )}
           </div>
 
           {/* Right Sidebar - Hidden on mobile */}
