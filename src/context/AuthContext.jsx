@@ -8,16 +8,17 @@ const AuthContext = createContext({
   setToken: () => {},
   user: null,
   setUser: () => {},
-  isLoggedIn: false,
+  isLoggedIn: null,
   setIsLoggedIn: () => {},
-  isLoadingUser: false,
   handleLogout: () => {},
+  isLoading: true,
 });
 
 const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(getAuthToken() || "");
   const [user, setUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (token) {
@@ -30,12 +31,15 @@ const AuthContextProvider = ({ children }) => {
           console.error("Failed to fetch user:", error);
           setUser(null);
           setIsLoggedIn(false);
+        } finally {
+          setIsLoading(false);
         }
       };
       getUser();
     } else {
       setUser(null);
       setIsLoggedIn(false);
+      setIsLoading(false);
     }
   }, [token]);
 
@@ -54,6 +58,7 @@ const AuthContextProvider = ({ children }) => {
     isLoggedIn,
     setIsLoggedIn,
     handleLogout,
+    isLoading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

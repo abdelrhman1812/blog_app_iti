@@ -1,3 +1,5 @@
+import ProtectedAuth from "@/components/protected/ProtectedAuth";
+import ProtectedRoute from "@/components/protected/ProtectedRoute";
 import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
 import Home from "@/pages/Home";
@@ -10,7 +12,11 @@ const MainRoutes = () => {
   const routers = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: (
+        <ProtectedRoute>
+          <MainLayout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           index: true,
@@ -21,7 +27,11 @@ const MainRoutes = () => {
     },
     {
       path: "/auth",
-      element: <AuthLayout />,
+      element: (
+        <ProtectedAuth>
+          <AuthLayout />
+        </ProtectedAuth>
+      ),
       children: [
         {
           path: "register",
