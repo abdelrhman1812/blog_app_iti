@@ -37,14 +37,17 @@ const CreatePost = () => {
       }
     }
 
-    mutate(formData, {
-      onSuccess: () => {
-        formik.resetForm();
-        setFiles([]);
-        setFileObjects([]);
-        files?.forEach((file) => URL.revokeObjectURL(file));
-      },
-    });
+    mutate(
+      { data: formData },
+      {
+        onSuccess: () => {
+          formik.resetForm();
+          setFiles([]);
+          setFileObjects([]);
+          files?.forEach((file) => URL.revokeObjectURL(file));
+        },
+      }
+    );
   };
 
   let validationSchema = useMemo(() => {

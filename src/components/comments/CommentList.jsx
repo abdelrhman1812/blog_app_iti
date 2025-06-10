@@ -3,7 +3,7 @@ import { useState } from "react";
 import CommentItem from "./CommentItem";
 import CreateComment from "./CreateComment";
 
-export default function CommentList({ comments }) {
+export default function CommentList({ comments, postId }) {
   const [showComments, setShowComments] = useState(false);
 
   return (
@@ -25,13 +25,12 @@ export default function CommentList({ comments }) {
       {showComments && (
         <div className="space-y-3 pl-4 border-l-2 border-gray-100">
           {comments.map((comment) => (
-            <CommentItem key={comment._id} comment={comment} />
+            <CommentItem key={comment._id} comment={comment} postId={postId} />
           ))}
         </div>
       )}
-
       {/* Add Comment Form */}
-      <CreateComment />
+      <CreateComment postId={postId} />
     </div>
   );
 }

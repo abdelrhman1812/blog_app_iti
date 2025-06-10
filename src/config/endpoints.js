@@ -4,6 +4,9 @@ const endPoints = {
   addPosts: "/posts",
   deletePosts: "/posts",
   patchPosts: "/posts",
+  /* comments */
+  comments: "/posts",
+
   /* User */
   register: "/auth/signup",
   login: "/auth/signin",

@@ -9,9 +9,17 @@ const usePatchData = (url, mutationKeys, invalidateQueryKey) => {
 
   const mutation = useMutation({
     mutationKey: mutationKeys,
-    mutationFn: async ({ id, data }) => {
-      console.log(data);
-      let updateUrl = `${url}/${id}`;
+    mutationFn: async ({ id, data, type, commentId }) => {
+      let updateUrl = url;
+
+      if (id) {
+        if (type === "comment" && commentId) {
+          updateUrl = `${url}/${id}/comments/${commentId}`;
+        } else {
+          updateUrl = `${url}/${id}`;
+        }
+      }
+      console.log(updateUrl);
       return patchRequest(updateUrl, data, token);
     },
     onMutate: () => {

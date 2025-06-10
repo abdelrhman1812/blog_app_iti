@@ -12,8 +12,16 @@ const useAddData = (url, mutationKeys, invalidateQueryKey) => {
 
   const mutation = useMutation({
     mutationKey: mutationKeys,
-    mutationFn: async (data) => {
+    mutationFn: async ({ id, data, type }) => {
       setRequestData(data);
+
+      if (id) {
+        switch (type) {
+          case "comment":
+            url = `${url}/${id}/comments`;
+            break;
+        }
+      }
       return postRequest(url, data, token);
     },
     onMutate: () => {
