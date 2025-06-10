@@ -1,13 +1,15 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/AuthContext";
 import { AvatarFallback } from "@radix-ui/react-avatar";
-import { Bell, Home, Menu, MessageSquare, Search, Users } from "lucide-react";
+import { Bell, Home, MessageSquare, Search, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../ui/input";
 import CardLogo from "./CardLogo";
 import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const handleLogOut = () => {
     navigate("/auth/login");
@@ -19,7 +21,7 @@ const Navbar = () => {
           {/* Left side - Logo and Navigation */}
           <div className="flex items-center space-x-8">
             <CardLogo />
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-6">
               <Button variant="ghost" size="sm" className="text-primary">
                 <Home className="w-5 h-5 mr-2 text-base-content" />
                 Home
@@ -36,7 +38,7 @@ const Navbar = () => {
           </div>
 
           {/*  Search */}
-          <div className="hidden md:flex flex-1 max-w-md mx-8">
+          <div className="hidden lg:flex flex-1 max-w-md mx-8">
             <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               <Input
@@ -48,26 +50,29 @@ const Navbar = () => {
 
           {/*  Notifications and Profile */}
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="relative">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="relative hidden sm:block "
+            >
               <Bell className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                 3
               </span>
             </Button>
 
-            <ModeToggle />
-
             <Avatar className="cursor-pointer">
-              <AvatarImage src={"/placeholder-user.jpg"} alt="Your profile" />
-              <AvatarFallback></AvatarFallback>
+              <AvatarImage
+                src={user?.user?.image?.secure_url}
+                alt={user?.user?.userName}
+              />
+              <AvatarFallback>
+                {user?.user?.userName?.charAt(0) || "U"}
+              </AvatarFallback>
             </Avatar>
-
+            <ModeToggle />
             <Button onClick={handleLogOut} variant="ghost" size="sm">
               Logout
-            </Button>
-
-            <Button variant="ghost" size="sm" className="md:hidden">
-              <Menu className="w-5 h-5" />
             </Button>
           </div>
         </div>
