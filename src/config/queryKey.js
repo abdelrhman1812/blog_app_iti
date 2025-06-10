@@ -10,6 +10,9 @@ const queryKeys = {
   register: "signup",
   login: "signin",
   user: "user",
+
+  /* admin */
+  getAllUser: "getAllUser",
 };
 
 export default queryKeys;

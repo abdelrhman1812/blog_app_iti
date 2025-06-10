@@ -2,26 +2,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useGetAllUsers } from "@/hooks/Actions/users/useUsersCurds";
 import { Calendar, Plus, TrendingUp, X } from "lucide-react";
+import RightSidebarSkeleton from "./Skeleton/RightSidebarSkeleton";
 
 export default function RightSidebar() {
-  const friendSuggestions = [
-    {
-      name: "Rahma Mohamed",
-      avatar: "/placeholder.svg?height=40&width=40",
-      mutualFriends: 5,
-    },
-    {
-      name: "Ali Ahmed",
-      avatar: "/placeholder.svg?height=40&width=40",
-      mutualFriends: 3,
-    },
-    {
-      name: "Mohamed Ali",
-      avatar: "/placeholder.svg?height=40&width=40",
-      mutualFriends: 8,
-    },
-  ];
+  const { data, isPending } = useGetAllUsers();
+  console.log(data);
 
   const trendingTopics = [
     { tag: "ReactJS", posts: 1.2 },
@@ -51,21 +38,20 @@ export default function RightSidebar() {
         <CardContent className="p-4">
           <h3 className="font-medium text-sm mb-3">People You May Know</h3>
           <div className="space-y-4">
-            {friendSuggestions.map((friend, index) => (
+            {isPending && <RightSidebarSkeleton />}
+            {data?.users?.slice(0, 3).map((user, index) => (
               <div key={index} className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Avatar>
                     <AvatarImage
-                      src={friend.avatar || "/placeholder.svg"}
-                      alt={friend.name}
+                      src={user?.image?.secure_url}
+                      alt={user.userName}
                     />
-                    <AvatarFallback>{friend.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback>{user.userName.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="text-sm font-medium">{friend.name}</p>
-                    <p className="text-xs text-gray-500">
-                      {friend.mutualFriends} mutual friends
-                    </p>
+                    <p className="text-sm font-medium">{user?.userName}</p>
+                    <p className="text-xs text-gray-500">5 mutual friends</p>
                   </div>
                 </div>
                 <div className="flex space-x-1">

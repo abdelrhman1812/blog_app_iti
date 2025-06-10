@@ -11,6 +11,9 @@ const endPoints = {
   register: "/auth/signup",
   login: "/auth/signin",
   userProfile: "/users",
+
+  /* Admin */
+  getAllUser: "/admin/users",
 };
 
 export default endPoints;
