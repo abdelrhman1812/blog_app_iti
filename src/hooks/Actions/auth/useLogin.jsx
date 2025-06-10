@@ -16,8 +16,8 @@ const useLogin = (url) => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      setAuthCookie(data.data.data.token);
-      setToken(data.data.data.token);
+      setAuthCookie(data?.data?.data?.token);
+      setToken(data?.data?.data?.token);
       navigate("/");
     } else if (isError) {
       console.error("Login error:", error);

@@ -25,8 +25,9 @@ import { useAuth } from "@/context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import getRequest from "../handleRequest/GetRequest";
 
-const useGetData = (url, queryKey) => {
+const useGetData = (url, queryKey, id) => {
   const { token } = useAuth();
+
   const getDataRequest = async () => {
     try {
       const { data } = await getRequest(url, token);
@@ -45,10 +46,12 @@ const useGetData = (url, queryKey) => {
   };
 
   const { data, isPending, error } = useQuery({
-    queryKey: [queryKey],
+    queryKey: [queryKey, id].filter(Boolean),
     queryFn: getDataRequest,
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 60,
+    retry: 1,
+    refetchOnWindowFocus: false,
   });
 
   return { data, isPending, error };

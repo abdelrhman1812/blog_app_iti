@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useGetAllUsers } from "@/hooks/Actions/users/useUsersCurds";
 import { Calendar, Plus, TrendingUp, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import RightSidebarSkeleton from "./Skeleton/RightSidebarSkeleton";
 
 export default function RightSidebar() {
@@ -42,13 +43,15 @@ export default function RightSidebar() {
             {data?.users?.slice(0, 3).map((user, index) => (
               <div key={index} className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
-                  <Avatar>
-                    <AvatarImage
-                      src={user?.image?.secure_url}
-                      alt={user.userName}
-                    />
-                    <AvatarFallback>{user.userName.charAt(0)}</AvatarFallback>
-                  </Avatar>
+                  <Link to={`profile/${user?._id}`}>
+                    <Avatar>
+                      <AvatarImage
+                        src={user?.image?.secure_url}
+                        alt={user.userName}
+                      />
+                      <AvatarFallback>{user.userName.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                  </Link>
                   <div>
                     <p className="text-sm font-medium">{user?.userName}</p>
                     <p className="text-xs text-gray-500">5 mutual friends</p>

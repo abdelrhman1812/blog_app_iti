@@ -1,6 +1,7 @@
 import endPoints from "@/config/endpoints";
 import queryKeys from "@/config/queryKey";
 import useGetData from "@/hooks/curdsHook/useGetData";
+import usePatchData from "@/hooks/curdsHook/usePatchData";
 
 export const useGetAllUsers = () => {
   const { data, isPending, isSuccess } = useGetData(
@@ -11,11 +12,27 @@ export const useGetAllUsers = () => {
   return { data, isPending, isSuccess };
 };
 
-export const useGetUserProfile = (url) => {
+export const useGetUserProfile = (url, id) => {
   const { data, isPending, isSuccess } = useGetData(
     url,
-    queryKeys.userProfileById
+    queryKeys.userProfileById,
+    id
   );
 
   return { data, isPending, isSuccess };
+};
+
+export const usePatchUserImageProfile = () => {
+  const { mutate, data, isPending, isSuccess } = usePatchData(
+    endPoints.updateUserImage,
+    queryKeys.updateUserImage,
+    [
+      queryKeys.userProfileById,
+      queryKeys.posts,
+      queryKeys.getAllUser,
+      queryKeys.user,
+    ]
+  );
+
+  return { mutate, data, isPending, isSuccess };
 };

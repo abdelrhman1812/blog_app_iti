@@ -1,7 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { useAuth } from "@/context/AuthContext";
+import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import {
   Bell,
   Bookmark,
@@ -15,9 +14,11 @@ import {
   User,
   Users,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default function LeftSidebar() {
-  const { user } = useAuth();
+  const { data } = useUserAuth();
   const menuItems = [
     { icon: Home, label: "Home", id: "home" },
     { icon: User, label: "Profile", id: "profile" },
@@ -51,17 +52,19 @@ export default function LeftSidebar() {
       {/* User Profile Summary */}
       <div className="p-4">
         <div className="flex items-center space-x-3">
-          <Avatar className="h-10 w-10">
-            <AvatarImage
-              src={user?.user?.image?.secure_url}
-              alt={user?.user?.userName}
-            />
-            <AvatarFallback>
-              {user?.user?.userName?.charAt(0) || "U"}
-            </AvatarFallback>
-          </Avatar>
+          <Link to={`/profile/${data?.user?._id}`}>
+            <Avatar className="h-10 w-10">
+              <AvatarImage
+                src={data?.user?.image?.secure_url}
+                alt={data?.user?.userName}
+              />
+              <AvatarFallback>
+                {data?.user?.userName?.charAt(0) || "U"}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
           <div>
-            <p className="font-medium text-sm">{user?.user?.userName}</p>
+            <p className="font-medium text-sm">{data?.user?.userName}</p>
             <p className="text-xs text-gray-500">View your profile</p>
           </div>
         </div>

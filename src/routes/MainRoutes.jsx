@@ -26,7 +26,7 @@ const MainRoutes = () => {
         },
         {
           index: true,
-          path: "/:id",
+          path: "profile/:id",
           element: <Profile />,
         },
       ],

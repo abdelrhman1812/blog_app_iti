@@ -7,14 +7,14 @@ import MainRoutes from "./routes/MainRoutes";
 const App = () => {
   return (
     <>
-      <AuthContextProvider>
-        <TanstackProvider>
+      <TanstackProvider>
+        <AuthContextProvider>
           <ThemeProvider defaultTheme="dark" storageKey="blog-theme">
             <ToastContainer />
             <MainRoutes />
           </ThemeProvider>
-        </TanstackProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </TanstackProvider>
     </>
   );
 };

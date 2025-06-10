@@ -13,6 +13,8 @@ const queryKeys = {
 
   /* User */
   userProfileById: "userProfileById",
+  userProfile: "userProfile",
+  updateUserImage: "updateUserImage",
 
   /* admin */
   getAllUser: "getAllUser",

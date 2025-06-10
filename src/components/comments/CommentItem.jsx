@@ -12,6 +12,7 @@ import * as Yup from "yup";
 import ErrorMsg from "../auth/ErrorMsg";
 
 const CommentItem = ({ comment, postId }) => {
+  console.log(comment);
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const { mutate, isPending } = usePatchComments(

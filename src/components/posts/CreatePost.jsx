@@ -4,15 +4,15 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useAuth } from "@/context/AuthContext";
 import { useAddPosts } from "@/hooks/Actions/posts/usePostsCurds";
+import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import { useFormik } from "formik";
 import { ImageIcon, Loader2, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import * as Yup from "yup";
 import ErrorMsg from "../auth/ErrorMsg";
 const CreatePost = () => {
-  const { user } = useAuth();
+  const { data } = useUserAuth();
   const { mutate, isPending } = useAddPosts();
   const [files, setFiles] = useState(null);
   const [fileObjects, setFileObjects] = useState([]);
@@ -87,11 +87,11 @@ const CreatePost = () => {
         <div className="flex items-center space-x-3">
           <Avatar>
             <AvatarImage
-              src={user?.user?.image?.secure_url}
-              alt={user?.user?.userName}
+              src={data?.user?.image?.secure_url}
+              alt={data?.user?.userName}
             />
             <AvatarFallback>
-              {user?.user?.userName?.charAt(0) || "U"}
+              {data?.user?.userName?.charAt(0) || "U"}
             </AvatarFallback>
           </Avatar>
           <Input

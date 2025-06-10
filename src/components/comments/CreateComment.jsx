@@ -1,6 +1,6 @@
 import endPoints from "@/config/endpoints";
-import { useAuth } from "@/context/AuthContext";
 import { useAddComments } from "@/hooks/Actions/comments/useCommentsCurds";
+import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import { useFormik } from "formik";
 import { Loader2 } from "lucide-react";
 import { useMemo } from "react";
@@ -10,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 const CreateComment = ({ postId }) => {
-  const { user } = useAuth();
+  const { data } = useUserAuth();
   const { mutate, isPending } = useAddComments(
     postId ? `${endPoints.posts}/${postId}${endPoints.addComment}` : null
   );
@@ -58,12 +58,12 @@ const CreateComment = ({ postId }) => {
     >
       <Avatar className="w-9 h-9 mt-1 flex-shrink-0">
         <AvatarImage
-          src={user?.user?.image?.secure_url}
-          alt={user?.user?.userName}
+          src={data?.user?.image?.secure_url}
+          alt={data?.user?.userName}
           className="object-cover"
         />
         <AvatarFallback className="bg-gray-200 dark:bg-gray-600">
-          {user?.user?.userName?.charAt(0)?.toUpperCase() || "U"}
+          {data?.user?.userName?.charAt(0)?.toUpperCase() || "U"}
         </AvatarFallback>
       </Avatar>
 
