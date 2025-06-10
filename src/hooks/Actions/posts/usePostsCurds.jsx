@@ -18,7 +18,7 @@ export const useDeletePost = () => {
   const { mutate, isPending, isSuccess } = useDeleteData(
     endPoints.deletePosts,
     [queryKeys.postsDelete],
-    queryKeys.posts
+    [queryKeys.posts, queryKeys.user]
   );
   return { mutate, isPending, isSuccess };
 };
@@ -27,17 +27,17 @@ export const useAddPosts = () => {
   const { mutate, data, error, isPending, isSuccess, isError } = useAddData(
     endPoints.posts,
     [queryKeys.postsAdd],
-    queryKeys.posts
+    [queryKeys.posts, queryKeys.user]
   );
 
   return { mutate, data, error, isPending, isSuccess, isError };
 };
 
-export const usePatchPost = () => {
+export const usePatchPost = (url) => {
   const { mutate, data, error, isPending, isSuccess, isError } = usePatchData(
-    endPoints.patchPosts,
+    url,
     [queryKeys.postsPatch],
-    queryKeys.posts
+    [queryKeys.posts, queryKeys.user]
   );
 
   return { mutate, data, error, isPending, isSuccess, isError };

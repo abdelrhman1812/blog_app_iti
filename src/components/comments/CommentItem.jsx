@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import endPoints from "@/config/endpoints";
 import { useAuth } from "@/context/AuthContext";
 import { usePatchComments } from "@/hooks/Actions/comments/useCommentsCurds";
 import formatDate from "@/utils/formatDate";
@@ -13,7 +14,11 @@ import ErrorMsg from "../auth/ErrorMsg";
 const CommentItem = ({ comment, postId }) => {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  const { mutate, isPending } = usePatchComments();
+  const { mutate, isPending } = usePatchComments(
+    postId && comment
+      ? `${endPoints.posts}/${postId}${endPoints.updateComment}/${comment?._id}`
+      : null
+  );
 
   const validationSchema = useMemo(() => {
     return Yup.object({
@@ -56,11 +61,11 @@ const CommentItem = ({ comment, postId }) => {
     <div key={comment._id} className="flex gap-3">
       <Avatar className="w-8 h-8">
         <AvatarImage
-          src={comment.createdBy.image?.secure_url || "/placeholder.svg"}
+          src={comment.createdBy.image?.secure_url}
           alt={comment.createdBy.userName}
         />
         <AvatarFallback>
-          {comment.createdBy.userName.charAt(0).toUpperCase()}
+          {comment?.createdBy?.userName?.charAt(0).toUpperCase()}
         </AvatarFallback>
       </Avatar>
 

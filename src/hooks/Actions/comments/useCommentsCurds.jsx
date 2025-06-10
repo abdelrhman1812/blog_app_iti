@@ -1,23 +1,22 @@
-import endPoints from "@/config/endpoints";
 import queryKeys from "@/config/queryKey";
 import useAddData from "@/hooks/curdsHook/useAddData";
 import usePatchData from "@/hooks/curdsHook/usePatchData";
 
-export const useAddComments = () => {
+export const useAddComments = (url) => {
   const { mutate, data, error, isPending, isSuccess, isError } = useAddData(
-    endPoints.comments,
+    url,
     [queryKeys.comments],
-    queryKeys.posts
+    [queryKeys.posts, queryKeys.user]
   );
 
   return { mutate, data, error, isPending, isSuccess, isError };
 };
 
-export const usePatchComments = () => {
+export const usePatchComments = (url) => {
   const { mutate, data, error, isPending, isSuccess, isError } = usePatchData(
-    endPoints.comments,
+    url,
     [queryKeys.comments],
-    queryKeys.posts
+    [queryKeys.posts, queryKeys.user]
   );
 
   return { mutate, data, error, isPending, isSuccess, isError };

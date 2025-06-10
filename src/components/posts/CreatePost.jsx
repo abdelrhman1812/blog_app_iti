@@ -29,14 +29,6 @@ const CreatePost = () => {
       });
     }
 
-    for (const [key, value] of formData.entries()) {
-      if (key === "images") {
-        console.log(`images:===> ${value.name}`);
-      } else {
-        console.log(`${key}: ${value}`);
-      }
-    }
-
     mutate(
       { data: formData },
       {

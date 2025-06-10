@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import endPoints from "@/config/endpoints";
 import useLogin from "@/hooks/Actions/auth/useLogin";
 import { useFormik } from "formik";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
@@ -14,7 +15,8 @@ import HeaderForm from "../shared/HeaderForm";
 import ErrorMsg from "./ErrorMsg";
 
 const LoginForm = () => {
-  const { mutate } = useLogin();
+  const url = endPoints.login;
+  const { mutate } = useLogin(url);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const handleNavigate = () => {
@@ -23,7 +25,7 @@ const LoginForm = () => {
 
   const handleSubmit = (values) => {
     // console.log("values:", values);
-    mutate(values);
+    mutate({ data: values });
   };
 
   let validationSchema = useMemo(() => {

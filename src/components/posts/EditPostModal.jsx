@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import endPoints from "@/config/endpoints";
 import { usePatchPost } from "@/hooks/Actions/posts/usePostsCurds";
 import { useFormik } from "formik";
 import { useMemo } from "react";
@@ -17,11 +18,14 @@ import * as Yup from "yup";
 import ErrorMsg from "../auth/ErrorMsg";
 
 export function EditPostModal({ post, isOpen, onClose }) {
-  const { mutate, isPending } = usePatchPost();
+  const { mutate, isPending } = usePatchPost(
+    post?._id ? `${endPoints.patchPosts}/${post._id}` : null
+  );
 
   const handleSubmit = (values) => {
+    if (!post?._id) return;
     mutate(
-      { id: post?._id, data: values },
+      { data: values },
       {
         onSuccess: () => {
           formik.resetForm();

@@ -21,13 +21,15 @@
 
 /* New Code After Cache */
 
+import { useAuth } from "@/context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import getRequest from "../handleRequest/GetRequest";
 
 const useGetData = (url, queryKey) => {
+  const { token } = useAuth();
   const getDataRequest = async () => {
     try {
-      const { data } = await getRequest(url);
+      const { data } = await getRequest(url, token);
       const result = data?.data;
 
       localStorage.setItem(`cache-${queryKey}`, JSON.stringify(result));

@@ -4,6 +4,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
+import Profile from "@/pages/Profile";
 import Register from "@/pages/Register";
 import { RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -22,6 +23,11 @@ const MainRoutes = () => {
           index: true,
           path: "/",
           element: <Home />,
+        },
+        {
+          index: true,
+          path: "/:id",
+          element: <Profile />,
         },
       ],
     },

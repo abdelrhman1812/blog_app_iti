@@ -6,10 +6,13 @@ const queryKeys = {
   postsAdd: "posts-add",
   postsPatch: "posts-patch",
 
-  /* Users */
+  /* Auth */
   register: "signup",
   login: "signin",
   user: "user",
+
+  /* User */
+  userProfileById: "userProfileById",
 
   /* admin */
   getAllUser: "getAllUser",

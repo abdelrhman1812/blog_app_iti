@@ -20,7 +20,7 @@ const RegisterForm = () => {
 
   const handleSubmit = (values) => {
     // console.log(" values:", values);
-    mutate(values);
+    mutate({ data: values });
   };
   const handleNavigate = useCallback(() => {
     navigate("/auth/login");

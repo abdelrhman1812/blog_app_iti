@@ -1,6 +1,8 @@
+import endPoints from "@/config/endpoints";
 import { useAuth } from "@/context/AuthContext";
 import { useAddComments } from "@/hooks/Actions/comments/useCommentsCurds";
 import { useFormik } from "formik";
+import { Loader2 } from "lucide-react";
 import { useMemo } from "react";
 import * as Yup from "yup";
 import ErrorMsg from "../auth/ErrorMsg";
@@ -9,15 +11,17 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 const CreateComment = ({ postId }) => {
   const { user } = useAuth();
-
-  const { mutate } = useAddComments();
+  const { mutate, isPending } = useAddComments(
+    postId ? `${endPoints.posts}/${postId}${endPoints.addComment}` : null
+  );
 
   /* =========== Handle Add Comment =========== */
 
   const handleSubmit = (values) => {
-    const type = "comment";
+    if (!postId) return;
+
     mutate(
-      { id: postId, data: values, type },
+      { data: values },
       {
         onSuccess: () => {
           formik.resetForm();
@@ -77,8 +81,20 @@ const CreateComment = ({ postId }) => {
             />
           </div>
 
-          <Button type="submit" size="sm" className="rounded-full h-9 px-4">
-            Post
+          <Button
+            disabled={!(formik.isValid && formik.dirty) || isPending}
+            type="submit"
+            size="sm"
+            className="rounded-full h-9 px-4"
+          >
+            {isPending ? (
+              <div className="flex items-center gap-2">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>Posting...</span>
+              </div>
+            ) : (
+              "Post"
+            )}
           </Button>
         </div>
 

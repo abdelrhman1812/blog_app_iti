@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Bell, Home, MessageSquare, Search, Users } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../ui/input";
 import CardLogo from "./CardLogo";
 import { ModeToggle } from "./ModeToggle";
@@ -61,15 +61,17 @@ const Navbar = () => {
               </span>
             </Button>
 
-            <Avatar className="cursor-pointer">
-              <AvatarImage
-                src={user?.user?.image?.secure_url}
-                alt={user?.user?.userName}
-              />
-              <AvatarFallback>
-                {user?.user?.userName?.charAt(0) || "U"}
-              </AvatarFallback>
-            </Avatar>
+            <Link to={`/${user?.user?._id}`}>
+              <Avatar className="cursor-pointer">
+                <AvatarImage
+                  src={user?.user?.image?.secure_url}
+                  alt={user?.user?.userName}
+                />
+                <AvatarFallback>
+                  {user?.user?.userName?.charAt(0) || "U"}
+                </AvatarFallback>
+              </Avatar>
+            </Link>
             <ModeToggle />
             <Button onClick={handleLogOut} variant="ghost" size="sm">
               Logout

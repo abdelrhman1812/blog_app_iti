@@ -6,11 +6,15 @@ const endPoints = {
   patchPosts: "/posts",
   /* comments */
   comments: "/posts",
+  addComment: "/comments",
+  updateComment: "/comments",
 
-  /* User */
+  /* Auth */
+  users: "/users",
   register: "/auth/signup",
   login: "/auth/signin",
   userProfile: "/users",
+  userProfileById: "/users",
 
   /* Admin */
   getAllUser: "/admin/users",

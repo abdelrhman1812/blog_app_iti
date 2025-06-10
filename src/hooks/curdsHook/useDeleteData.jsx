@@ -23,8 +23,12 @@ const useDeleteData = (url, mutationKeys, invalidateQueryKey) => {
     onSuccess: (data, variables, context) => {
       const successMessage = data?.data?.message || "Success!";
 
-      queryClient.invalidateQueries({
-        queryKey: [invalidateQueryKey],
+      const invalidateKeys = Array.isArray(invalidateQueryKey)
+        ? invalidateQueryKey
+        : [invalidateQueryKey];
+
+      invalidateKeys.forEach((key) => {
+        queryClient.invalidateQueries({ queryKey: [key] });
       });
 
       if (context?.loadingToast) {

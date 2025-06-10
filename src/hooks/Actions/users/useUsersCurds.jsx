@@ -10,3 +10,12 @@ export const useGetAllUsers = () => {
 
   return { data, isPending, isSuccess };
 };
+
+export const useGetUserProfile = (url) => {
+  const { data, isPending, isSuccess } = useGetData(
+    url,
+    queryKeys.userProfileById
+  );
+
+  return { data, isPending, isSuccess };
+};
