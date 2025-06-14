@@ -1,20 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { Users } from "lucide-react";
+import figmaImg from "../../assets/images/figma-svgrepo-com.svg";
+import jsImg from "../../assets/images/javascript-svgrepo-com.svg";
+import reactImg from "../../assets/images/reactjs-svgrepo-com.svg";
+
 const groupItems = [
   {
     name: "React Developers",
     members: 12.5,
-    image: "src/assets/images/reactjs-svgrepo-com.svg",
+    image: reactImg,
   },
   {
     name: "JavaScript Enthusiasts",
     members: 8.3,
-    image: "src/assets/images/javascript-svgrepo-com.svg",
+    image: jsImg,
   },
   {
     name: "UI/UX Design",
     members: 5.7,
-    image: "src/assets/images/figma-svgrepo-com.svg",
+    image: figmaImg,
   },
 ];
 const GroupsItems = () => {
