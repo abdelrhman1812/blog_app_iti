@@ -1,11 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "../ui/button";
-import CardLogo from "./CardLogo";
-import { ModeToggle } from "./ModeToggle";
+import { Button } from "../../ui/button";
+import CardLogo from "../CardLogo";
+import { ModeToggle } from "../ModeToggle";
 
 const AuthNavbar = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <nav className="bg-card  sticky top-0 z-50">

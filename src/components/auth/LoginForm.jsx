@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import endPoints from "@/config/endpoints";
 import useLogin from "@/hooks/Actions/auth/useLogin";
 import { useFormik } from "formik";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
@@ -10,13 +9,13 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import CardLogo from "../shared/CardLogo";
-import FooterForm from "../shared/FooterForm";
-import HeaderForm from "../shared/HeaderForm";
+import BtnSubmit from "./BtnSubmit";
 import ErrorMsg from "./ErrorMsg";
+import FooterForm from "./FooterForm";
+import HeaderForm from "./HeaderForm";
 
 const LoginForm = () => {
-  const url = endPoints.login;
-  const { mutate } = useLogin(url);
+  const { mutate, isPending } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const handleNavigate = () => {
@@ -24,7 +23,6 @@ const LoginForm = () => {
   };
 
   const handleSubmit = (values) => {
-    // console.log("values:", values);
     mutate({ data: values });
   };
 
@@ -33,7 +31,9 @@ const LoginForm = () => {
       email: Yup.string()
         .email("Enter a valid Email")
         .required("Email must be required"),
-      password: Yup.string().required("Enter Your Password"),
+      password: Yup.string()
+        // .min(5, "Password must be more than 5 characters")
+        .required("Enter Your Password"),
     });
   }, []);
 
@@ -105,12 +105,7 @@ const LoginForm = () => {
             <ErrorMsg formik={formik} type={"password"} />
           </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-primary hover:bg-primary/90"
-          >
-            Sign Up
-          </Button>
+          <BtnSubmit formik={formik} isPending={isPending} text="Sign in" />
         </form>
 
         <div className="mt-6">

@@ -5,8 +5,7 @@ import useAddData from "@/hooks/curdsHook/useAddData";
 const useRegister = () => {
   const { mutate, data, error, isPending, isSuccess, isError } = useAddData(
     endPoints.register,
-    [queryKeys.register],
-    queryKeys.user
+    [queryKeys.register]
   );
 
   return { mutate, data, error, isPending, isSuccess, isError };

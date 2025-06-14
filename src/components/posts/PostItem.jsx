@@ -1,24 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/context/AuthContext";
 import { useDeletePost } from "@/hooks/Actions/posts/usePostsCurds";
+import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import formatDate from "@/utils/formatDate";
-import { Edit, Trash } from "lucide-react";
 import { useState } from "react";
 import CommentList from "../comments/CommentList";
 import { EditPostModal } from "./EditPostModal";
+import PostBtnAction from "./PostBtnAction";
 import PostDetails from "./PostDetails";
 
 const PostItem = ({ post }) => {
-  const { user } = useAuth();
+  const { data: user } = useUserAuth();
   const [, setSelectedPost] = useState(null);
   const { mutate: deletePost, isPending: isPendingDelete } = useDeletePost();
 
@@ -44,6 +36,7 @@ const PostItem = ({ post }) => {
         />
       )}
 
+      {/* Post Card */}
       <Card>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
@@ -67,31 +60,12 @@ const PostItem = ({ post }) => {
               </div>
             </div>
             {user?.user?._id === post.owner?._id && (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
-                    •••
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-40">
-                  <DropdownMenuItem
-                    className="focus:bg-transparent text-primary focus:text-primary/50"
-                    onClick={() => handleEdit(post)}
-                  >
-                    <Edit className="mr-2 h-4 w-4" />
-                    <span>Edit</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    disabled={isPendingDelete}
-                    onClick={() => !isPendingDelete && handleDeletePost(post)}
-                    className="text-red-600 focus:bg-transparent focus:text-error"
-                  >
-                    <Trash className="mr-2 h-4 w-4" />
-                    <span>Delete</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <PostBtnAction
+                post={post}
+                isPendingDelete={isPendingDelete}
+                handleDeletePost={handleDeletePost}
+                handleEdit={handleEdit}
+              />
             )}
           </div>
         </CardHeader>
@@ -100,15 +74,16 @@ const PostItem = ({ post }) => {
             <h2 className="text-lg font-bold">{post?.title}</h2>
             <p className="text-gray-700">{post?.content}</p>
 
+            {/* Post Images */}
             {post?.images?.length > 0 && (
               <div
                 className={
                   post.images.length === 1
                     ? "flex justify-center my-4"
-                    : "grid grid-cols-1 md:grid-cols-2 gap-4 my-4"
+                    : "grid grid-cols-2 gap-4 my-4"
                 }
               >
-                {post.images.map((image, index) => (
+                {post?.images?.map((image, index) => (
                   <div
                     key={index}
                     className={

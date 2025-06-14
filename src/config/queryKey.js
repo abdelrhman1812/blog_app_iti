@@ -5,6 +5,7 @@ const queryKeys = {
   postsDelete: "posts-delete",
   postsAdd: "posts-add",
   postsPatch: "posts-patch",
+  postLike: "post-like",
 
   /* Auth */
   register: "signup",
@@ -15,6 +16,8 @@ const queryKeys = {
   userProfileById: "userProfileById",
   userProfile: "userProfile",
   updateUserImage: "updateUserImage",
+  suggestedUser: "suggestedUser",
+  updateUserProfile: "updateUserProfile",
 
   /* admin */
   getAllUser: "getAllUser",

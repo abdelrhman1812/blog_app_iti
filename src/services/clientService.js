@@ -2,6 +2,7 @@ import axios from "axios";
 
 const clientApi = axios.create({
   baseURL: "https://blog-app-node-js-pi.vercel.app",
+  // baseURL: "http://localhost:3000",
 });
 
 export const request = async (options, token) => {
@@ -14,7 +15,6 @@ export const request = async (options, token) => {
     return res;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log(error);
       throw error;
     } else {
       throw new Error("An unexpected error occurred.");

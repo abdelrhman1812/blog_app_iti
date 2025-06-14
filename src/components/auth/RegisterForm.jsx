@@ -9,17 +9,17 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import CardLogo from "../shared/CardLogo";
-import FooterForm from "../shared/FooterForm";
-import HeaderForm from "../shared/HeaderForm";
+import BtnSubmit from "./BtnSubmit";
 import ErrorMsg from "./ErrorMsg";
+import FooterForm from "./FooterForm";
+import HeaderForm from "./HeaderForm";
 const RegisterForm = () => {
-  const { mutate, isSuccess } = useRegister();
+  const { mutate, isSuccess, isPending } = useRegister();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (values) => {
-    // console.log(" values:", values);
     mutate({ data: values });
   };
   const handleNavigate = useCallback(() => {
@@ -42,6 +42,8 @@ const RegisterForm = () => {
         .email("Enter a valid Email")
         .required("Email must be required"),
       password: Yup.string()
+        // .min(5, "Password must be more than 5 characters")
+
         // .matches(
         //   /^[A-Z][a-z0-9]{3,40}$/,
         //   "Password must start with an uppercase letter and be more than 5 characters"
@@ -177,12 +179,7 @@ const RegisterForm = () => {
             <ErrorMsg formik={formik} type={"confirmPassword"} />
           </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-primary hover:bg-primary/90"
-          >
-            Create Account
-          </Button>
+          <BtnSubmit formik={formik} isPending={isPending} text="Sign Up" />
         </form>
 
         <div className="mt-6">

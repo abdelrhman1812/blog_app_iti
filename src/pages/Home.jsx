@@ -1,18 +1,20 @@
-import LeftSidebar from "@/components/left-sidebar";
 import CreatePost from "@/components/posts/CreatePost";
+import NoPosts from "@/components/posts/NoPosts";
 import PostList from "@/components/posts/PostList";
-import RightSidebar from "@/components/right-sidebar";
+import LeftSidebar from "@/components/sideBars/left-sidebar";
+import RightSidebar from "@/components/sideBars/right-sidebar";
 import PostSkeleton from "@/components/Skeleton/PostSkeleton";
 import { useGetAllPosts } from "@/hooks/Actions/posts/usePostsCurds";
 
 const Home = () => {
   const { data, isPending } = useGetAllPosts();
+  const posts = data?.posts || [];
 
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto max-w-[1320px]  px-4">
         <div className="flex flex-col md:flex-row">
-          {/* Left Sidebar - Hidden on mobile */}
+          {/* Left Sidebar */}
           <div className="hidden md:block md:w-1/4 lg:w-1/5 pr-4 sticky top-16 h-[calc(100vh-4rem)]">
             <LeftSidebar />
           </div>
@@ -24,13 +26,15 @@ const Home = () => {
 
             {/* Posts Feed */}
             {isPending ? (
-              <PostSkeleton length={data?.posts.length} />
+              <PostSkeleton length={3} />
+            ) : posts.length > 0 ? (
+              <PostList posts={posts} />
             ) : (
-              <PostList posts={data?.posts} />
+              <NoPosts />
             )}
           </div>
 
-          {/* Right Sidebar - Hidden on mobile */}
+          {/* Right Sidebar */}
           <div className="hidden md:block md:w-1/4 lg:w-1/5 pl-4 sticky top-16 h-[calc(100vh-4rem)]">
             <RightSidebar />
           </div>

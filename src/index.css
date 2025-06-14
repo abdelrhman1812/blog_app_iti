@@ -9,7 +9,6 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Core colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -33,8 +32,6 @@
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
 
-  /* Text colors - DaisyUI style */
-
   --color-base-content: var(--base-content);
   --color-neutral-content: var(--neutral-content);
   --color-neutral: var(--neutral);
@@ -47,7 +44,6 @@
   --color-error-content: var(--error-content);
   --color-info-content: var(--info-content);
 
-  /* UI elements */
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -167,7 +163,6 @@
   --input: oklch(31.8% 0.009 257.5);
   --ring: oklch(53.2% 0.228 279.1);
 
-  /* DaisyUI-style content colors for dark mode */
   --base-content: oklch(96.3% 0.004 106.8);
   --neutral: oklch(37.3% 0.006 258.9);
   --neutral-content: oklch(80% 0.006 258.9);

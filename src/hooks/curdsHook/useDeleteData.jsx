@@ -37,6 +37,9 @@ const useDeleteData = (url, mutationKeys, invalidateQueryKey) => {
           type: "success",
           isLoading: false,
           autoClose: 3000,
+          draggable: true,
+          closeOnClick: true,
+          pauseOnHover: true,
         });
       }
     },
@@ -51,6 +54,9 @@ const useDeleteData = (url, mutationKeys, invalidateQueryKey) => {
           type: "error",
           isLoading: false,
           autoClose: 5000,
+          draggable: true,
+          closeOnClick: true,
+          pauseOnHover: true,
         });
       }
     },

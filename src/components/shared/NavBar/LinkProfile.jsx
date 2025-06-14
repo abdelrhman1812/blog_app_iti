@@ -2,7 +2,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 
 const LinkProfile = ({ user }) => {
-  console.log(user);
   return (
     <Link to={`/profile/${user?._id}`}>
       <Avatar className="h-10 w-10">

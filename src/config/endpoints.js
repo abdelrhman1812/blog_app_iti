@@ -4,6 +4,7 @@ const endPoints = {
   addPosts: "/posts",
   deletePosts: "/posts",
   patchPosts: "/posts",
+  likePost: "/posts",
 
   /* comments */
   comments: "/posts",
@@ -20,6 +21,9 @@ const endPoints = {
   userProfile: "/users",
   userProfileById: "/users",
   updateUserImage: "/users/update-image",
+  follow: "/follow",
+  suggestedUser: "/users/unfollow",
+  updateUserProfile: "/users/update-profile",
 
   /* Admin */
   getAllUser: "/admin/users",

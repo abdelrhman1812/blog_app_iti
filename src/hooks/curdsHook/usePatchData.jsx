@@ -77,8 +77,9 @@ const usePatchData = (url, mutationKeys, invalidateQueryKey) => {
 
   const mutation = useMutation({
     mutationKey: mutationKeys,
-    mutationFn: async ({ data }) => {
-      return patchRequest(url, data, token);
+    mutationFn: async ({ data, url: overrideUrl }) => {
+      const finalUrl = overrideUrl || url;
+      return patchRequest(finalUrl, data, token);
     },
     onMutate: () => {
       const loadingToast = toast.loading("Processing...", {
@@ -104,11 +105,13 @@ const usePatchData = (url, mutationKeys, invalidateQueryKey) => {
           type: "success",
           isLoading: false,
           autoClose: 3000,
+          draggable: true,
+          closeOnClick: true,
+          pauseOnHover: true,
         });
       }
     },
     onError: (error, variables, context) => {
-      console.log(error);
       const errorMessage =
         error.response?.data?.message || "Something went wrong";
 
@@ -118,6 +121,9 @@ const usePatchData = (url, mutationKeys, invalidateQueryKey) => {
           type: "error",
           isLoading: false,
           autoClose: 5000,
+          draggable: true,
+          closeOnClick: true,
+          pauseOnHover: true,
         });
       }
     },

@@ -115,11 +115,13 @@ const useAddData = (url, mutationKeys, invalidateQueryKey) => {
           type: "success",
           isLoading: false,
           autoClose: 3000,
+          draggable: true,
+          closeOnClick: true,
+          pauseOnHover: true,
         });
       }
     },
     onError: (error, variables, context) => {
-      console.log(error);
       const errorMessage =
         error.response?.data?.message || "Something went wrong";
 
@@ -129,6 +131,9 @@ const useAddData = (url, mutationKeys, invalidateQueryKey) => {
           type: "error",
           isLoading: false,
           autoClose: 5000,
+          draggable: true,
+          closeOnClick: true,
+          pauseOnHover: true,
         });
       }
     },

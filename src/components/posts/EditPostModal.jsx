@@ -106,7 +106,12 @@ export function EditPostModal({ post, isOpen, onClose }) {
           </div>
 
           <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={onClose}>
+            <Button
+              type="button"
+              className="px-6 py-2 rounded-md hover:bg-error/90"
+              variant="outline"
+              onClick={onClose}
+            >
               Cancel
             </Button>
             <Button

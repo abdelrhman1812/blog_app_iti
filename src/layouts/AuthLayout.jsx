@@ -1,4 +1,4 @@
-import AuthNavbar from "@/components/shared/AuthNavBar";
+import AuthNavbar from "@/components/shared/NavBar/AuthNavBar";
 import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {

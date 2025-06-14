@@ -8,17 +8,13 @@ const RightSidebarSkeleton = () => {
     <SkeletonWrapper>
       {/* Friend Suggestions Skeleton */}
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="">
           <Skeleton width={120} height={16} className="mb-3" />
           <div className="space-y-4">
-            {Array.from({ length: 3 }, (_, index) => (
+            {Array.from({ length: 5 }, (_, index) => (
               <div key={index} className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <Skeleton circle width={40} height={40} />
-                  <div>
-                    <Skeleton width={80} height={12} />
-                    <Skeleton width={60} height={12} />
-                  </div>
                 </div>
                 <div className="flex space-x-1">
                   <Skeleton width={32} height={32} />

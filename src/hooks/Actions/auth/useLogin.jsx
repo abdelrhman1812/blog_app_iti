@@ -1,3 +1,4 @@
+import endPoints from "@/config/endpoints";
 import queryKeys from "@/config/queryKey";
 import { useAuth } from "@/context/AuthContext";
 import useAddData from "@/hooks/curdsHook/useAddData";
@@ -5,12 +6,12 @@ import { setAuthCookie } from "@/services/cookies";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useLogin = (url) => {
+const useLogin = () => {
   const { setToken } = useAuth();
   const { mutate, data, error, isPending, isSuccess, isError } = useAddData(
-    url,
+    endPoints.login,
     [queryKeys.login],
-    queryKeys.user
+    [queryKeys.userProfile, queryKeys.userProfileById]
   );
   const navigate = useNavigate();
 
@@ -19,8 +20,6 @@ const useLogin = (url) => {
       setAuthCookie(data?.data?.data?.token);
       setToken(data?.data?.data?.token);
       navigate("/");
-    } else if (isError) {
-      console.error("Login error:", error);
     }
   }, [data, isSuccess, isError, error, navigate, setToken]);
 

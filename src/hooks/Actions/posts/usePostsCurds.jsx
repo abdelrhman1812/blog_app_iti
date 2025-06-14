@@ -43,3 +43,13 @@ export const usePatchPost = (url) => {
 
   return { mutate, data, error, isPending, isSuccess, isError };
 };
+
+export const usePatchLikePost = (url) => {
+  const { mutate, data, error, isPending, isSuccess, isError } = usePatchData(
+    url,
+    [queryKeys.postLike],
+    [queryKeys.posts, queryKeys.userProfileById]
+  );
+
+  return { mutate, data, error, isPending, isSuccess, isError };
+};

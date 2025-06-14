@@ -45,7 +45,7 @@ const useGetData = (url, queryKey, id) => {
     }
   };
 
-  const { data, isPending, error } = useQuery({
+  const { data, isPending, error, isLoading } = useQuery({
     queryKey: [queryKey, id].filter(Boolean),
     queryFn: getDataRequest,
     staleTime: 1000 * 60 * 5,
@@ -54,7 +54,7 @@ const useGetData = (url, queryKey, id) => {
     refetchOnWindowFocus: false,
   });
 
-  return { data, isPending, error };
+  return { data, isLoading, isPending, error };
 };
 
 export default useGetData;

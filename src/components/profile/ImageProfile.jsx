@@ -3,12 +3,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/context/AuthContext";
 import { usePatchUserImageProfile } from "@/hooks/Actions/users/useUsersCurds";
 
 import { Check, Upload, X } from "lucide-react";
 import { useState } from "react";
 
 const ImageProfile = ({ data }) => {
+  const { user: userAuth } = useAuth();
+
   const [file, setFile] = useState(null);
   const [fileObject, setFileObject] = useState(null);
   const { mutate } = usePatchUserImageProfile();
@@ -42,7 +45,7 @@ const ImageProfile = ({ data }) => {
   };
   return (
     <div className="relative">
-      <div className="w-50 h-50 rounded-full overflow-hidden border-2 border-gray-200">
+      <div className="w-50 h-50 rounded-full mx-auto overflow-hidden border-2 border-gray-200">
         {file ? (
           <img
             src={file}
@@ -63,44 +66,46 @@ const ImageProfile = ({ data }) => {
         )}
       </div>
 
-      <div className="absolute -bottom-2 -right-2 flex flex-col space-y-1">
-        {/* Upload Image Button */}
-        <input
-          type="file"
-          onChange={handleImageChange}
-          accept="image/*"
-          className="hidden"
-          id="image"
-        />
-        <Label
-          htmlFor="image"
-          className="rounded-full flex items-center justify-center  w-8 h-8 p-0 bg-primary hover:bg-primary"
-        >
-          <Upload className="w-4 h-4 text-center text-white" />
-        </Label>
-
-        {fileObject && (
-          <Button
-            size="sm"
-            className="rounded-full w-8 h-8 p-0 bg-green-500 hover:bg-green-600"
-            onClick={handleSubmit}
-            title="Submit Image"
+      {userAuth?.id === data?.user?._id && (
+        <div className="absolute -bottom-2 left-1/2 md:left-auto md:-right-2 flex flex-col space-y-1">
+          {/* Upload Image Button */}
+          <input
+            type="file"
+            onChange={handleImageChange}
+            accept="image/*"
+            className="hidden"
+            id="image"
+          />
+          <Label
+            htmlFor="image"
+            className="rounded-full flex items-center justify-center  w-8 h-8 p-0 bg-primary hover:bg-primary"
           >
-            <Check className="w-4 h-4" />
-          </Button>
-        )}
+            <Upload className="w-4 h-4 text-center text-white" />
+          </Label>
 
-        {fileObject && (
-          <Button
-            size="sm"
-            className="rounded-full w-8 h-8 p-0 bg-red-500 hover:bg-red-600"
-            onClick={handleRemoveImage}
-            title="Remove Image"
-          >
-            <X className="w-4 h-4" />
-          </Button>
-        )}
-      </div>
+          {fileObject && (
+            <Button
+              size="sm"
+              className="rounded-full w-8 h-8 p-0 bg-green-500 hover:bg-green-600"
+              onClick={handleSubmit}
+              title="Submit Image"
+            >
+              <Check className="w-4 h-4" />
+            </Button>
+          )}
+
+          {fileObject && (
+            <Button
+              size="sm"
+              className="rounded-full w-8 h-8 p-0 bg-red-500 hover:bg-red-600"
+              onClick={handleRemoveImage}
+              title="Remove Image"
+            >
+              <X className="w-4 h-4" />
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

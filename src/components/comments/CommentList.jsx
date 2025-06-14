@@ -3,7 +3,7 @@ import { useState } from "react";
 import CommentItem from "./CommentItem";
 import CreateComment from "./CreateComment";
 
-export default function CommentList({ comments, postId }) {
+const CommentList = ({ comments, postId }) => {
   const [showComments, setShowComments] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ export default function CommentList({ comments, postId }) {
           variant="ghost"
           size="sm"
           onClick={() => setShowComments(!showComments)}
-          className="text-gray-600 p-2 h-auto"
+          className="text-gray-600 p-2 h-auto cursor-pointer  hover:bg-transparent hover:text-primary"
         >
           {showComments ? "Hide" : "View"} {comments.length} comment
           {comments.length !== 1 ? "s" : ""}
@@ -33,4 +33,6 @@ export default function CommentList({ comments, postId }) {
       <CreateComment postId={postId} />
     </div>
   );
-}
+};
+
+export default CommentList;

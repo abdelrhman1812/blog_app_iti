@@ -2,8 +2,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import endPoints from "@/config/endpoints";
-import { useAuth } from "@/context/AuthContext";
 import { usePatchComments } from "@/hooks/Actions/comments/useCommentsCurds";
+import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import formatDate from "@/utils/formatDate";
 import { useFormik } from "formik";
 import { Check, Edit, Heart, Loader2, X } from "lucide-react";
@@ -12,8 +12,7 @@ import * as Yup from "yup";
 import ErrorMsg from "../auth/ErrorMsg";
 
 const CommentItem = ({ comment, postId }) => {
-  console.log(comment);
-  const { user } = useAuth();
+  const { data: user } = useUserAuth();
   const [isEditing, setIsEditing] = useState(false);
   const { mutate, isPending } = usePatchComments(
     postId && comment
@@ -126,7 +125,11 @@ const CommentItem = ({ comment, postId }) => {
             </div>
             <div className="flex items-center gap-4 mt-1 text-xs text-gray-500 dark:text-gray-400">
               <span>{formatDate(comment.createdAt)}</span>
-              <Button variant="ghost" size="sm" className="h-auto p-0 text-xs">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-auto p-0 text-xs hover:bg-transparent hover:text-primary"
+              >
                 <Heart className="w-3 h-3 mr-1" />
                 Like
               </Button>
@@ -134,7 +137,7 @@ const CommentItem = ({ comment, postId }) => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="h-auto p-0 text-xs"
+                  className="h-auto p-0 text-xs hover:bg-transparent hover:text-primary"
                   onClick={() => setIsEditing(true)}
                 >
                   <Edit className="w-3 h-3 mr-1" />

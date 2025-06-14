@@ -1,4 +1,5 @@
 import getAuthToken, { removeAuthToken } from "@/services/cookies";
+import { jwtDecode } from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
@@ -8,16 +9,27 @@ const AuthContext = createContext({
   setIsLoggedIn: () => {},
   handleLogout: () => {},
   isLoading: true,
+  user: null,
 });
 
 const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(getAuthToken() || "");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (token) {
-      setIsLoggedIn(true);
+      try {
+        const decoded = jwtDecode(token);
+        setUser(decoded?.user || decoded);
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.error(err || "Invalid token");
+        setUser(null);
+        setIsLoggedIn(false);
+      }
     } else {
+      setUser(null);
       setIsLoggedIn(false);
     }
   }, [token]);
@@ -25,16 +37,17 @@ const AuthContextProvider = ({ children }) => {
   const handleLogout = () => {
     setToken("");
     setIsLoggedIn(false);
+    setUser(null);
     removeAuthToken();
   };
 
   const value = {
     token,
     setToken,
-
     isLoggedIn,
     setIsLoggedIn,
     handleLogout,
+    user,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
