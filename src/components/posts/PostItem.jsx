@@ -9,12 +9,16 @@ import { EditPostModal } from "./EditPostModal";
 import PostBtnAction from "./PostBtnAction";
 import PostDetails from "./PostDetails";
 
+import isArabic from "@/utils/IsArabic";
+import { Link } from "react-router-dom";
+import userImg from "../../assets/images/user-img.svg";
+
 const PostItem = ({ post }) => {
   const { data: user } = useUserAuth();
   const [, setSelectedPost] = useState(null);
   const { mutate: deletePost, isPending: isPendingDelete } = useDeletePost();
 
-  /* COntroller for Box Model */
+  /* Controller for Box Model */
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
 
@@ -26,6 +30,7 @@ const PostItem = ({ post }) => {
     setCurrentPost(post);
     setIsEditModalOpen(true);
   };
+
   return (
     <>
       {currentPost && (
@@ -41,17 +46,19 @@ const PostItem = ({ post }) => {
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Avatar>
-                <AvatarImage
-                  src={post?.owner?.image?.secure_url || "/placeholder.svg"}
-                  alt={post?.owner?.userName}
-                />
-                <AvatarFallback>
-                  {post?.owner?.userName?.charAt(0)}
-                </AvatarFallback>
-              </Avatar>
+              <Link to={`/profile/${post?.owner?._id}`}>
+                <Avatar>
+                  <AvatarImage
+                    src={post?.owner?.image?.secure_url || userImg}
+                    alt={post?.owner?.userName}
+                  />
+                  <AvatarFallback>
+                    {post?.owner?.userName?.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
+              </Link>
               <div>
-                <h3 className="font-semibold text-sm">
+                <h3 className="font-semibold  capitalize">
                   {post?.owner?.userName}
                 </h3>
                 <p className="text-xs text-gray-500">
@@ -71,9 +78,19 @@ const PostItem = ({ post }) => {
         </CardHeader>
         <CardContent className="pt-0">
           <div className="space-y-3">
-            <h2 className="text-lg font-bold">{post?.title}</h2>
-            <p className="text-gray-700">{post?.content}</p>
-
+            <h2
+              className={`text-lg font-bold ${
+                isArabic(post?.title) ? "rtl" : "ltr"
+              }`}
+            >
+              {post?.title}
+            </h2>{" "}
+            <p
+              className="text-muted-foreground dark:text-white"
+              dir={isArabic(post?.content) ? "rtl" : "ltr"}
+            >
+              {post?.content}
+            </p>
             {/* Post Images */}
             {post?.images?.length > 0 && (
               <div
@@ -104,9 +121,7 @@ const PostItem = ({ post }) => {
                 ))}
               </div>
             )}
-
             <PostDetails post={post} />
-
             <CommentList comments={post.comments} postId={post._id} />
           </div>
         </CardContent>

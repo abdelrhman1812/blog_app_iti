@@ -17,13 +17,13 @@ const PostBtnAction = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm">
+        <Button variant="ghost" className="cursor-pointer" size="sm">
           •••
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuItem
-          className="focus:bg-transparent text-primary focus:text-primary/50"
+          className="focus:bg-transparent text-primary focus:text-primary/50 cursor-pointe"
           onClick={() => handleEdit(post)}
         >
           <Edit className="mr-2 h-4 w-4" />
@@ -33,7 +33,7 @@ const PostBtnAction = ({
         <DropdownMenuItem
           disabled={isPendingDelete}
           onClick={() => !isPendingDelete && handleDeletePost(post)}
-          className="text-red-600 focus:bg-transparent focus:text-error"
+          className="text-destructive focus:bg-transparent cursor-pointe focus:text-destructive"
         >
           <Trash className="mr-2 h-4 w-4" />
           <span>Delete</span>

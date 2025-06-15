@@ -8,9 +8,9 @@ const navLinks = [
     label: "Home",
   },
   {
-    to: "/friends",
+    to: "/followers",
     icon: <Users className="w-5 h-5" />,
-    label: "Friends",
+    label: "Followers",
   },
   {
     to: "/messages",
@@ -21,24 +21,30 @@ const navLinks = [
 
 const NavItems = () => {
   return (
-    <div className="hidden lg:flex gap-5 items-center space-x-1">
-      {navLinks.map((link) => (
-        <NavLink
-          to={link.to}
-          key={link.to}
-          className={({ isActive }) =>
-            `rounded-md transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              isActive
-                ? "text-primary"
-                : "text-muted-foreground hover:text-primary/80"
-            }`
-          }
-        >
-          <span className="text-sm font-medium flex items-center gap-3">
-            {link.icon} {link.label}
-          </span>
-        </NavLink>
-      ))}
+    <div className="hidden md:flex gap-5 items-center space-x-1">
+      {navLinks.map((link) => {
+        const isDisabled = link.label === "Messages";
+
+        return (
+          <NavLink
+            to={isDisabled ? "#" : link.to}
+            key={link.to}
+            className={({ isActive }) =>
+              `rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+        ${isDisabled ? "pointer-events-none opacity-50 cursor-not-allowed" : ""}
+        ${
+          isActive && !isDisabled
+            ? "text-primary"
+            : "text-muted-foreground hover:text-primary/80"
+        }`
+            }
+          >
+            <span className="text-sm font-medium flex items-center gap-3">
+              {link.icon} {link.label}
+            </span>
+          </NavLink>
+        );
+      })}
     </div>
   );
 };

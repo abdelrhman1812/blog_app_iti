@@ -26,7 +26,7 @@ const RightSidebar = () => {
   };
 
   return (
-    <div className="w-full h-full my-7 space-y-6 pb-20 overflow-hidden">
+    <div className="w-full h-full my-7 space-y-6 pb-20 overflow-y-auto">
       <Card>
         <CardContent className="p-4">
           <h3 className="font-medium text-sm mb-3">People You May Know</h3>

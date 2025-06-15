@@ -37,8 +37,8 @@ export function EditPostModal({ post, isOpen, onClose }) {
 
   let validationSchema = useMemo(() => {
     return Yup.object({
-      title: Yup.string().min(2).max(60).trim(),
-      content: Yup.string().min(5).max(2000).trim(),
+      title: Yup.string().min(1).max(60).trim(),
+      content: Yup.string().min(1).max(2000).trim(),
     });
   }, []);
 
@@ -49,6 +49,7 @@ export function EditPostModal({ post, isOpen, onClose }) {
     },
     onSubmit: handleSubmit,
     validationSchema,
+    enableReinitialize: true,
   });
 
   return (
@@ -64,9 +65,9 @@ export function EditPostModal({ post, isOpen, onClose }) {
               variant="ghost"
               size="icon"
               onClick={onClose}
-              className="rounded-full h-8 w-8"
+              className="rounded-full h-8 w-8 cursor-pointer"
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4 text-destructive cursor-pointer" />
             </Button>
           </div>
         </DialogHeader>
@@ -79,7 +80,7 @@ export function EditPostModal({ post, isOpen, onClose }) {
                 id="title"
                 name="title"
                 placeholder="Post title"
-                className="focus-visible:ring-1"
+                className="w-full  dark:bg-background "
                 onChange={formik.handleChange}
                 value={formik.values.title}
                 onBlur={formik.handleBlur}
@@ -96,7 +97,7 @@ export function EditPostModal({ post, isOpen, onClose }) {
                 name="content"
                 placeholder="What's on your mind?"
                 rows={5}
-                className="resize-none focus-visible:ring-1"
+                className="w-full min-h-[100px] resize-none dark:bg-background "
                 onChange={formik.handleChange}
                 value={formik.values.content}
                 onBlur={formik.handleBlur}
@@ -108,8 +109,8 @@ export function EditPostModal({ post, isOpen, onClose }) {
           <div className="flex justify-end gap-2 pt-4">
             <Button
               type="button"
-              className="px-6 py-2 rounded-md hover:bg-error/90"
-              variant="outline"
+              className="px-6 py-2 rounded-md bg-secondary hover:bg-secondary/80 cursor-pointer"
+              variant="destructive "
               onClick={onClose}
             >
               Cancel
@@ -117,7 +118,7 @@ export function EditPostModal({ post, isOpen, onClose }) {
             <Button
               disabled={!(formik.isValid && formik.dirty) || isPending}
               type="submit"
-              className="bg-primary hover:bg-primary/90 px-6 py-2 rounded-md"
+              className="bg-primary cursor-pointer hover:bg-primary/90 px-6 py-2 rounded-md"
             >
               {isPending ? (
                 <div className="flex items-center gap-2">

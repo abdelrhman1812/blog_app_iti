@@ -2,7 +2,7 @@ import endPoints from "@/config/endpoints";
 import { useAddComments } from "@/hooks/Actions/comments/useCommentsCurds";
 import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import { useFormik } from "formik";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { useMemo } from "react";
 import * as Yup from "yup";
 import ErrorMsg from "../auth/ErrorMsg";
@@ -35,7 +35,7 @@ const CreateComment = ({ postId }) => {
   let validationSchema = useMemo(() => {
     return Yup.object({
       content: Yup.string()
-        .min(5)
+        .min(1)
         .max(2000)
         .trim()
         .required("content is required"),
@@ -50,7 +50,17 @@ const CreateComment = ({ postId }) => {
     },
     onSubmit: handleSubmit,
     validationSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
   });
+  const handleBlur = (field) => (e) => {
+    formik.handleBlur(e);
+    if (formik.values[field].trim() === "") {
+      formik.setFieldTouched(field, false);
+    } else {
+      formik.validateField(field);
+    }
+  };
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -74,10 +84,15 @@ const CreateComment = ({ postId }) => {
               id="content"
               name="content"
               placeholder="Write a comment..."
-              className="rounded-full bg-gray-100 dark:bg-gray-800 border-none px-4 py-5 focus-visible:ring-2 focus-visible:ring-primary"
-              onChange={formik.handleChange}
+              className="w-full  dark:bg-background "
+              onChange={(e) => {
+                formik.handleChange(e);
+                if (e.target.value === "") {
+                  formik.setFieldTouched("content", false);
+                }
+              }}
               value={formik.values.content}
-              onBlur={formik.handleBlur}
+              onBlur={handleBlur("content")}
             />
           </div>
 
@@ -93,7 +108,7 @@ const CreateComment = ({ postId }) => {
                 <span>Posting...</span>
               </div>
             ) : (
-              "Post"
+              <Send />
             )}
           </Button>
         </div>

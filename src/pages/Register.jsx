@@ -14,7 +14,7 @@ const Register = () => {
                 className="mx-auto mb-8"
               />
               <h3 className="text-2xl font-bold text-white mb-4">
-                Join our growing community
+                Where conversations spark relationships
               </h3>
               <p className="text-green-100">
                 Create an account to start sharing your ideas, connect with

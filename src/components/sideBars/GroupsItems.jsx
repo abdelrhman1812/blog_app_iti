@@ -23,7 +23,7 @@ const groupItems = [
 ];
 const GroupsItems = () => {
   return (
-    <div className="p-4">
+    <div className="px-4">
       <h3 className="font-medium text-sm mb-3">Your Groups</h3>
       <div className="space-y-3">
         {groupItems?.map((group, index) => (
@@ -44,7 +44,7 @@ const GroupsItems = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="w-full justify-start text-primary hover:bg-primary/80"
+          className="w-full justify-start text-primary hover:bg-primary/80 hover:text-white transition-all duration-300"
         >
           <Users className="mr-2 h-4 w-4" />
           See All Groups

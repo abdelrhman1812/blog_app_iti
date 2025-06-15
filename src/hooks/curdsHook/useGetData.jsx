@@ -30,6 +30,7 @@ const useGetData = (url, queryKey, id) => {
 
   const getDataRequest = async () => {
     try {
+      console.log();
       const { data } = await getRequest(url, token);
       const result = data?.data;
 

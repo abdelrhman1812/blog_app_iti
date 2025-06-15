@@ -18,6 +18,7 @@ const queryKeys = {
   updateUserImage: "updateUserImage",
   suggestedUser: "suggestedUser",
   updateUserProfile: "updateUserProfile",
+  getUserFollower: "usersFollowers",
 
   /* admin */
   getAllUser: "getAllUser",

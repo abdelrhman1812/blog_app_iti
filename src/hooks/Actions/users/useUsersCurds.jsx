@@ -12,6 +12,14 @@ export const useGetSuggestedUsers = () => {
   return { data, isPending, isSuccess };
 };
 
+export const useGetUserFollower = () => {
+  const { data, isPending, isSuccess } = useGetData(
+    endPoints.getUserFollower,
+    queryKeys.getUserFollower
+  );
+
+  return { data, isPending, isSuccess };
+};
 export const useGetUserProfile = (url, id) => {
   const { data, isPending, isSuccess } = useGetData(
     url,

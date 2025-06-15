@@ -6,7 +6,7 @@ const clientApi = axios.create({
 });
 
 export const request = async (options, token) => {
-  console.log(options);
+  console.log(token);
   try {
     if (token) {
       clientApi.defaults.headers.token = token;

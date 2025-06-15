@@ -24,6 +24,7 @@ const endPoints = {
   follow: "/follow",
   suggestedUser: "/users/unfollow",
   updateUserProfile: "/users/update-profile",
+  getUserFollower: "/users/followers",
 
   /* Admin */
   getAllUser: "/admin/users",

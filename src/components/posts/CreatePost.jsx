@@ -45,9 +45,9 @@ const CreatePost = () => {
 
   let validationSchema = useMemo(() => {
     return Yup.object({
-      title: Yup.string().min(2).max(60).trim().required("Title is required"),
+      title: Yup.string().min(1).max(60).trim().required("Title is required"),
       content: Yup.string()
-        .min(5)
+        .min(1)
         .max(2000)
         .trim()
         .required("content is required"),
@@ -81,7 +81,14 @@ const CreatePost = () => {
     setFiles(newFiles);
     setFileObjects(newFileObjects);
   };
-
+  const handleBlur = (field) => (e) => {
+    formik.handleBlur(e);
+    if (formik.values[field].trim() === "") {
+      formik.setFieldTouched(field, false);
+    } else {
+      formik.validateField(field);
+    }
+  };
   return (
     <Card className="mb-6">
       <CardHeader className="pb-3">
@@ -90,7 +97,7 @@ const CreatePost = () => {
           <Input
             readOnly
             placeholder="What's on your mind?"
-            className="flex-1 bg-gray-100 border-none rounded-full px-4"
+            className="flex-1 bg-gray-100 dark:bg-background border-none rounded-full px-4"
           />
         </div>
       </CardHeader>
@@ -103,10 +110,15 @@ const CreatePost = () => {
               name="title"
               id="title"
               placeholder="Post title..."
-              className="w-full"
-              onChange={formik.handleChange}
+              className="w-full  dark:bg-background "
+              onChange={(e) => {
+                formik.handleChange(e);
+                if (e.target.value === "") {
+                  formik.setFieldTouched("title", false);
+                }
+              }}
               value={formik.values.title}
-              onBlur={formik.handleBlur}
+              onBlur={handleBlur("title")}
             />
             <ErrorMsg formik={formik} type={"title"} />
           </div>
@@ -116,10 +128,15 @@ const CreatePost = () => {
               name="content"
               id="content"
               placeholder="Write your post content here..."
-              className="w-full min-h-[100px] resize-none"
-              onChange={formik.handleChange}
+              className="w-full min-h-[100px] resize-none dark:bg-background "
+              onChange={(e) => {
+                formik.handleChange(e);
+                if (e.target.value === "") {
+                  formik.setFieldTouched("content", false);
+                }
+              }}
               value={formik.values.content}
-              onBlur={formik.handleBlur}
+              onBlur={handleBlur("content")}
             />
             <ErrorMsg formik={formik} type={"content"} />
           </div>

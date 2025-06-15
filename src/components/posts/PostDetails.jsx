@@ -40,43 +40,43 @@ const PostDetails = ({ post }) => {
       <Separator />
       <div className="flex items-center justify-around py-1">
         <Button
-          variant="ghost"
+          variant="default"
           size="sm"
-          className="flex-1 hover:bg-transparent hover:text-red-500 cursor-pointer"
+          className="flex-1 bg-transparent text-dark shadow-none hover:bg-transparent  hover:text-destructive cursor-pointer"
           onClick={handleLike}
           disabled={isPending}
         >
           <Heart
-            className={`w-4 h-4 mr-2  ${
+            className={`w-4 h-4 mr-2 hover:drop-shadow-2xl  ${
               post?.likes?.some((like) => like._id === user?.user?._id)
-                ? "text-red-500 fill-red-500"
+                ? "text-destructive fill-destructive"
                 : ""
             }`}
           />
         </Button>
 
         <Button
-          variant="ghost"
+          variant="default"
           size="sm"
-          className="flex-1 hover:bg-transparent hover:text-base-content"
+          className="flex-1 bg-transparent hover:bg-transparent text-muted-foreground shadow-none "
         >
           <MessageCircle className="w-4 h-4 mr-2" />
           Comment
         </Button>
 
         <Button
-          variant="ghost"
+          variant="default"
           size="sm"
-          className="flex-1 hidden lg:flex hover:bg-transparent hover:text-base-content"
+          className="flex-1 hidden bg-transparent lg:flex hover:bg-transparent text-muted-foreground shadow-none  "
         >
           <Share2 className="w-4 h-4 mr-2" />
           Share
         </Button>
 
         <Button
-          variant="ghost"
+          variant="default"
           size="sm"
-          className="flex-1 hidden lg:flex hover:bg-gray-100"
+          className="flex-1 hidden lg:flex bg-transparent hover:bg-transparent text-muted-foreground shadow-none "
         >
           <Bookmark className="w-4 h-4 mr-2" />
           Save

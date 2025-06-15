@@ -3,7 +3,9 @@ const ErrorMsg = ({ formik, type }) => {
   return (
     <>
       {formik.errors[typeInput] && formik.touched[typeInput] ? (
-        <span className="error text-error">{formik.errors[typeInput]}</span>
+        <span className="error text-destructive">
+          {formik.errors[typeInput]}
+        </span>
       ) : (
         ""
       )}

@@ -23,7 +23,7 @@ const CommentList = ({ comments, postId }) => {
 
       {/* Comments List */}
       {showComments && (
-        <div className="space-y-3 pl-4 border-l-2 border-gray-100">
+        <div className="space-y-3 pl-4 border-l-2 border-muted">
           {comments.map((comment) => (
             <CommentItem key={comment._id} comment={comment} postId={postId} />
           ))}

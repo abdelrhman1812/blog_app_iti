@@ -36,9 +36,9 @@ const AuthContextProvider = ({ children }) => {
 
   const handleLogout = () => {
     setToken("");
-    setIsLoggedIn(false);
     setUser(null);
     removeAuthToken();
+    setIsLoggedIn(false);
   };
 
   const value = {
