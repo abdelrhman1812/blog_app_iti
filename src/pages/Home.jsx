@@ -15,12 +15,12 @@ const Home = () => {
       <div className="mx-auto max-w-[1320px]  px-4">
         <div className="flex flex-col md:flex-row">
           {/* Left Sidebar */}
-          <div className="hidden md:block md:w-1/4 lg:w-1/5 pr-4 sticky top-16 h-[calc(100vh-4rem)]">
+          <div className="hidden lg:block md:w-1/4 lg:w-1/5 pr-4 sticky top-16 h-[calc(100vh-4rem)]">
             <LeftSidebar />
           </div>
 
           {/* Main Content */}
-          <div className="w-full md:w-2/4 lg:w-3/5 py-6">
+          <div className="w-full  lg:w-3/5 py-6">
             {/* Create Post Form */}
             <CreatePost />
 
@@ -35,7 +35,7 @@ const Home = () => {
           </div>
 
           {/* Right Sidebar */}
-          <div className="hidden md:block md:w-1/4 lg:w-1/5 pl-4 sticky top-16 h-[calc(100vh-4rem)]">
+          <div className="hidden lg:block md:w-1/4 lg:w-1/5 pl-4 sticky top-16 h-[calc(100vh-4rem)]">
             <RightSidebar />
           </div>
         </div>

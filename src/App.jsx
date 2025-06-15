@@ -9,7 +9,7 @@ const App = () => {
     <>
       <TanstackProvider>
         <AuthContextProvider>
-          <ThemeProvider defaultTheme="dark" storageKey="blog-theme">
+          <ThemeProvider defaultTheme="light" storageKey="blog-theme">
             <ToastContainer />
             <MainRoutes />
           </ThemeProvider>

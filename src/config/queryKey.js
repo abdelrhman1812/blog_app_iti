@@ -7,6 +7,10 @@ const queryKeys = {
   postsPatch: "posts-patch",
   postLike: "post-like",
 
+  /* Comments */
+
+  deleteComments: "comments",
+
   /* Auth */
   register: "signup",
   login: "signin",

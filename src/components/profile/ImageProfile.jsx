@@ -9,6 +9,8 @@ import { usePatchUserImageProfile } from "@/hooks/Actions/users/useUsersCurds";
 import { Check, Upload, X } from "lucide-react";
 import { useState } from "react";
 
+import imgUser from "../../assets/images/user-img.svg";
+
 const ImageProfile = ({ data }) => {
   const { user: userAuth } = useAuth();
 
@@ -56,7 +58,8 @@ const ImageProfile = ({ data }) => {
         ) : (
           <Avatar className="w-full h-full">
             <AvatarImage
-              src={data?.user?.image?.secure_url}
+              className="w-full h-full object-cover rounded-full"
+              src={data?.user?.image?.secure_url || imgUser}
               alt={data?.user?.useName}
             />
             <AvatarFallback className="text-2xl">

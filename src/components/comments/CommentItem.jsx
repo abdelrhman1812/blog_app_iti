@@ -77,6 +77,7 @@ const CommentItem = ({ comment, postId }) => {
         ) : (
           <>
             <CommentContent
+              postId={postId}
               comment={comment}
               user={user}
               setIsEditing={setIsEditing}

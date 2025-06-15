@@ -19,7 +19,7 @@ const FormUpdateUserData = ({ formik, handleCancel, pending }) => {
             type="text"
             className={`text-xl font-bold ${
               formik.touched.userName && formik.errors.userName
-                ? "border-red-500 focus:ring-red-500"
+                ? "border-destructive focus:ring-destructive"
                 : ""
             }`}
             value={formik.values.userName}

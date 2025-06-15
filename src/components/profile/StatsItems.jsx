@@ -20,10 +20,8 @@ const StatsItems = ({ data }) => {
           key={item.title}
           className="flex flex-col items-center min-w-[60px]"
         >
-          <span className="font-bold text-lg text-gray-900 ">{item.value}</span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
-            {item.title}
-          </span>
+          <span className="font-bold text-lg  ">{item.value}</span>
+          <span className="text-sm ">{item.title}</span>
         </div>
       ))}
     </div>

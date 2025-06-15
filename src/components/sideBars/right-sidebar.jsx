@@ -64,22 +64,22 @@ const RightSidebar = () => {
                       <Button
                         disabled={loadingUserId === user._id}
                         size="sm"
-                        variant="outline"
-                        className="h-8 w-8 p-0"
+                        variant="default"
+                        className="h-8 w-8 p-0 bg-transparent text-black dark:text-white hover:bg:primary/80 hover:text-white cursor-pointer"
                         onClick={() => handleFollow(user?._id)}
                         aria-label="Follow user"
                       >
                         {loadingUserId === user._id ? (
                           <Loader2 className="h-4 w-4 animate-spin" />
                         ) : (
-                          <Plus className="h-4 w-4" />
+                          <Plus className="h-4 w-4 " />
                         )}
                       </Button>
                       <Button
                         asChild
                         size="sm"
-                        variant="outline"
-                        className="h-8 w-8 p-0"
+                        variant="default"
+                        className="h-8 w-8 p-0 bg-transparent text-black dark:text-white  hover:text-white cursor-pointer"
                       >
                         <Link to={`/profile/${user?._id}`}>
                           <Eye className="h-4 w-4" />

@@ -9,9 +9,9 @@ const useDeleteData = (url, mutationKeys, invalidateQueryKey) => {
 
   const mutation = useMutation({
     mutationKey: mutationKeys,
-    mutationFn: async (id) => {
-      let updateUrl = `${url}/${id}`;
-      return deleteRequest(updateUrl, token);
+    mutationFn: async ({ url: overrideUrl, id }) => {
+      const finalUrl = id ? `${url}/${id}` : overrideUrl;
+      return deleteRequest(finalUrl, token);
     },
     onMutate: () => {
       const loadingToast = toast.loading("Processing...", {

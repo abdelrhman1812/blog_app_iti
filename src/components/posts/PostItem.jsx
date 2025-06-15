@@ -24,7 +24,7 @@ const PostItem = ({ post }) => {
 
   const handleDeletePost = (post) => {
     setSelectedPost(post?._id);
-    deletePost(post?._id);
+    deletePost({ id: post?._id });
   };
   const handleEdit = (post) => {
     setCurrentPost(post);
