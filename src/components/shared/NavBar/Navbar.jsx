@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import useUserAuth from "@/hooks/Actions/users/useUserAuth";
-import { Bell } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import CardLogo from "../CardLogo";
 import { ModeToggle } from "../ModeToggle";
+import BtnLogout from "./BtnLogout";
 import LinkProfile from "./LinkProfile";
+import MobileSidebar from "./MobileSidebar";
 import NavItems from "./NavItems";
 import SearchInput from "./SearchInput";
 
@@ -33,24 +33,13 @@ const Navbar = () => {
           <SearchInput />
 
           {/*  Notifications and Profile */}
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="relative hidden  ">
-              <Bell className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-destructive text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                3
-              </span>
-            </Button>
-
+          <div className="flex items-center space-x-4 ">
             <LinkProfile user={data?.user} />
             <ModeToggle />
-            <Button
-              onClick={handleLogOut}
-              variant="destructive"
-              className="cursor-pointer"
-              size="sm"
-            >
-              Logout
-            </Button>
+            <div className="hidden md:block">
+              <BtnLogout handleLogOut={handleLogOut} />
+            </div>
+            <MobileSidebar data={data} handleLogOut={handleLogOut} />
           </div>
         </div>
       </div>

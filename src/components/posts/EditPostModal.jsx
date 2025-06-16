@@ -38,7 +38,7 @@ export function EditPostModal({ post, isOpen, onClose }) {
   let validationSchema = useMemo(() => {
     return Yup.object({
       title: Yup.string().min(1).max(60).trim(),
-      content: Yup.string().min(1).max(2000).trim(),
+      content: Yup.max(2000).trim(),
     });
   }, []);
 

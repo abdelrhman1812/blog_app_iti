@@ -223,6 +223,8 @@
   --sidebar-accent-foreground: oklch(14% 0.01 286);
   --sidebar-border: oklch(90% 0.01 286);
   --sidebar-ring: oklch(62% 0.21 260);
+  --skeleton-bg: #e4e6eb;
+  --skeleton-highlight: #f0f2f5;
 }
 
 .dark {
@@ -263,6 +265,8 @@
   --sidebar-accent-foreground: oklch(98% 0 0);
   --sidebar-border: oklch(25% 0.01 286);
   --sidebar-ring: oklch(55% 0.16 252);
+  --skeleton-bg: #3e4042;
+  --skeleton-highlight: #525355;
 }
 
 @layer base {

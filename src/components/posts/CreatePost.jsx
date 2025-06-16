@@ -47,10 +47,9 @@ const CreatePost = () => {
     return Yup.object({
       title: Yup.string().min(1).max(60).trim().required("Title is required"),
       content: Yup.string()
-        .min(1)
+
         .max(2000)
-        .trim()
-        .required("content is required"),
+        .trim(),
     });
   }, []);
 
