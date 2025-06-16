@@ -69,7 +69,8 @@ const UserDataItems = ({ data, handleEditClick }) => {
         <span>{data?.user?.email}</span>
       </div>
 
-      <div className="flex items-center md:justify-start space-x-6 text-sm text-gray-500">
+      {/* Address , Phone , Profile Link */}
+      <div className="flex items-center md:justify-start flex-wrap gap-y-3 space-x-6 text-sm text-gray-500">
         <div className="flex items-center space-x-1">
           <MapPin className="w-4 h-4" />
           <span>{data?.user?.address || "NA"}</span>

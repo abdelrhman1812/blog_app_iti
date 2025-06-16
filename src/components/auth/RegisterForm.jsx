@@ -36,7 +36,7 @@ const RegisterForm = () => {
     return Yup.object({
       userName: Yup.string()
         .min(3, "Your Name Must be More than 3 characters")
-        .max(20, "Your Name Must be less than 10 characters")
+        .max(10, "Your Name Must be less than 10 characters")
         .required("Name must be required"),
       email: Yup.string()
         .email("Enter a valid Email")

@@ -109,7 +109,7 @@ export function EditPostModal({ post, isOpen, onClose }) {
           <div className="flex justify-end gap-2 pt-4">
             <Button
               type="button"
-              className="px-6 py-2 rounded-md bg-secondary hover:bg-secondary/80 cursor-pointer"
+              className="px-6 py-2 rounded-md bg-secondary hover:bg-secondary/80 text-white cursor-pointer"
               variant="destructive "
               onClick={onClose}
             >

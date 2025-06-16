@@ -1,4 +1,5 @@
 import getAuthToken, { removeAuthToken } from "@/services/cookies";
+import { useQueryClient } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(getAuthToken() || "");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [user, setUser] = useState(null);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (token) {
@@ -38,6 +40,8 @@ const AuthContextProvider = ({ children }) => {
     setToken("");
     setUser(null);
     removeAuthToken();
+    queryClient.clear();
+
     setIsLoggedIn(false);
   };
 
@@ -48,6 +52,7 @@ const AuthContextProvider = ({ children }) => {
     setIsLoggedIn,
     handleLogout,
     user,
+    setUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

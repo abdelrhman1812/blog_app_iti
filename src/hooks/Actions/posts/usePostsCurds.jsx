@@ -6,13 +6,13 @@ import useGetData from "@/hooks/curdsHook/useGetData";
 import usePatchData from "@/hooks/curdsHook/usePatchData";
 
 export const useGetAllPosts = () => {
-  const { data, isPending, isSuccess } = useGetData(
+  const { data, isPending, isSuccess, refetch } = useGetData(
     endPoints.posts,
     queryKeys.posts,
     [queryKeys.posts, queryKeys.userProfileById]
   );
 
-  return { data, isPending, isSuccess };
+  return { data, isPending, isSuccess, refetch };
 };
 
 export const useDeletePost = () => {
@@ -45,11 +45,12 @@ export const usePatchPost = (url) => {
 };
 
 export const usePatchLikePost = (url) => {
-  const { mutate, data, error, isPending, isSuccess, isError } = usePatchData(
-    url,
-    [queryKeys.postLike],
-    [queryKeys.posts, queryKeys.userProfileById]
-  );
+  const { mutate, data, error, isPending, isSuccess, isError, refetch } =
+    usePatchData(
+      url,
+      [queryKeys.postLike],
+      [queryKeys.posts, queryKeys.userProfileById]
+    );
 
-  return { mutate, data, error, isPending, isSuccess, isError };
+  return { mutate, data, error, isPending, isSuccess, isError, refetch };
 };

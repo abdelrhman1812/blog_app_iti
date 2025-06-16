@@ -26,7 +26,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto py-6 px-4">
+      <div className="max-w-4xl mx-auto py-6 px-1  sm:px-2">
         {/* Profile Header */}
         <Card className="mb-6">
           <CardContent className="pt-6">

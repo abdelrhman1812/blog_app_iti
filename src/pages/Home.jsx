@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-[1320px]  px-4">
+      <div className="mx-auto max-w-[1320px]  px-2 sm:px-4">
         <div className="flex flex-col md:flex-row">
           {/* Left Sidebar */}
           <div className="hidden lg:block md:w-1/4 lg:w-1/5 pr-4 sticky top-16 h-[calc(100vh-4rem)]">

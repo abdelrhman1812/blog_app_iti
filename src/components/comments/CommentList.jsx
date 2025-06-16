@@ -7,7 +7,7 @@ const CommentList = ({ comments, postId }) => {
   const [showComments, setShowComments] = useState(false);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 ">
       {/* Toggle Comments Button */}
       {comments.length > 0 && (
         <Button
@@ -23,7 +23,7 @@ const CommentList = ({ comments, postId }) => {
 
       {/* Comments List */}
       {showComments && (
-        <div className="space-y-3 pl-4 border-l-2 border-muted">
+        <div className="space-y-3  border-l-2 border-muted">
           {comments.map((comment) => (
             <CommentItem key={comment._id} comment={comment} postId={postId} />
           ))}

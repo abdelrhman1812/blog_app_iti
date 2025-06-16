@@ -76,7 +76,7 @@ const PostItem = ({ post }) => {
             )}
           </div>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 px-4">
           <div className="space-y-3">
             <h2
               className={`text-lg font-bold ${
@@ -84,9 +84,9 @@ const PostItem = ({ post }) => {
               }`}
             >
               {post?.title}
-            </h2>{" "}
+            </h2>
             <p
-              className="text-muted-foreground dark:text-white"
+              className="text-muted-foreground dark:text-white overflow-hidden break-all"
               dir={isArabic(post?.content) ? "rtl" : "ltr"}
             >
               {post?.content}

@@ -55,7 +55,7 @@ const CommentItem = ({ comment, postId }) => {
   };
 
   return (
-    <div key={comment._id} className="flex gap-3">
+    <div key={comment._id} className="flex flex-wrap  gap-2">
       <Avatar className="w-8 h-8">
         <AvatarImage
           src={comment.createdBy.image?.secure_url}

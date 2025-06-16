@@ -18,19 +18,23 @@ const CommentContent = ({ comment, user, setIsEditing, postId }) => {
 
   return (
     <>
-      <div className="bg-background-foreground shadow space-y-3 rounded-lg px-3 py-2">
-        <p className="font-semibold text-sm capitalize">
+      <div className="bg-background-foreground max shadow space-y-1 rounded-lg px-2 py-2">
+        <p className="font-semibold text-sm capitalize m-0">
           {comment?.createdBy.userName}
         </p>
+        <span className="text-[10px] text-gray-500">
+          {formatDate(comment?.createdAt)}
+        </span>
         <p
-          className="text-sm text-muted-foreground dark:text-white "
+          className="text-sm text-muted-foreground my-2 dark:text-white break-words overflow-hidden break-all "
           dir={isArabic(comment?.content) ? "rtl" : "ltr"}
         >
           {comment?.content}
         </p>
       </div>
+
+      {/* Btn Action */}
       <div className="flex items-center gap-4 mt-2 text-xs text-gray-500 ">
-        <span>{formatDate(comment?.createdAt)}</span>
         <Button
           variant="default"
           size="sm"

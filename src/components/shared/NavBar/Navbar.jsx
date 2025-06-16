@@ -20,7 +20,7 @@ const Navbar = () => {
     }
   };
   return (
-    <nav className="bg-card border-b  sticky top-0 z-50">
+    <nav className="bg-card border-b  sticky top-0 z-50 overflow-hidden ">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Left side - Logo and Navigation */}
