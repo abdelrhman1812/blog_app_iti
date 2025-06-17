@@ -44,7 +44,11 @@ export const usePatchFollow = (url) => {
   const { mutate, data, error, isPending, isSuccess, isError } = usePatchData(
     url,
     [queryKeys.postLike],
-    [queryKeys.suggestedUser, queryKeys.userProfileById]
+    [
+      queryKeys.suggestedUser,
+      queryKeys.userProfileById,
+      queryKeys.getUserFollower,
+    ]
   );
 
   return { mutate, data, error, isPending, isSuccess, isError };

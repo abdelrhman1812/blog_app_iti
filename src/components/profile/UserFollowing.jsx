@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
 import { usePatchFollow } from "@/hooks/Actions/users/useUsersCurds";
+import { UserMinus } from "lucide-react";
 import { Link } from "react-router-dom";
 import userImg from "../../assets/images/user-img.svg";
 import { Button } from "../ui/button";
@@ -53,10 +54,11 @@ const UserFollowing = ({ data }) => {
 
                 {userAuth?.id === data?.user?._id && (
                   <Button
-                    variant="outline"
+                    variant="destructive"
                     size="sm"
                     onClick={() => handleUnfollow(user._id)}
                   >
+                    <UserMinus className="w-4 h-4 mr-1" />
                     Unfollow
                   </Button>
                 )}

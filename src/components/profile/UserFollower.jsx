@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/context/AuthContext";
 import { usePatchFollow } from "@/hooks/Actions/users/useUsersCurds";
+import { UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import userImg from "../../assets/images/user-img.svg";
 import { Button } from "../ui/button";
@@ -67,6 +68,7 @@ const UserFollower = ({ data }) => {
                         handleFollowToggle(user._id, followingStatus)
                       }
                     >
+                      <UserPlus className="w-4 h-4 mr-1" />
                       {followingStatus ? "Following" : "Follow"}
                     </Button>
                   )}

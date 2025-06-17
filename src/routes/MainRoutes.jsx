@@ -2,7 +2,7 @@ import ProtectedAuth from "@/components/protected/ProtectedAuth";
 import ProtectedRoute from "@/components/protected/ProtectedRoute";
 import AuthLayout from "@/layouts/AuthLayout";
 import MainLayout from "@/layouts/MainLayout";
-import Follower from "@/pages/Follower";
+import FollowerPage from "@/pages/FollowerPage";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Profile from "@/pages/Profile";
@@ -31,7 +31,7 @@ const MainRoutes = () => {
         },
         {
           path: "followers",
-          element: <Follower />,
+          element: <FollowerPage />,
         },
       ],
     },
