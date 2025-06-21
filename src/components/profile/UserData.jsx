@@ -42,6 +42,7 @@ const UserData = ({ data }) => {
 
       address: Yup.string(),
       bio: Yup.string().max(100, "Bio must be less than 100 characters"),
+      linkProfile: Yup.string().url("Enter a valid URL"),
     });
   }, []);
 

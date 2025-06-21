@@ -7,7 +7,7 @@ const AuthNavbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="bg-card  sticky top-0 z-50">
+    <nav className="bg-card  sticky top-0 z-50 shadow">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/*  - Logo  */}

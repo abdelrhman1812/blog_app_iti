@@ -8,6 +8,7 @@ import {
   UserMinus,
   UserPlus,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import BtnUpdate from "../shared/btnUpdate";
 import { Button } from "../ui/button";
 import StatsItems from "./StatsItems";
@@ -81,7 +82,17 @@ const UserDataItems = ({ data, handleEditClick }) => {
         </div>
         <div className="flex items-center space-x-1">
           <LinkIcon className="w-4 h-4" />
-          <span className="text-primary">portfolio.com</span>
+          <Link
+            to={data?.user?.linkProfile}
+            target="_blank"
+            className={` ${
+              data?.user?.linkProfile == "" || data?.user?.linkProfile == null
+                ? "pointer-events-none opacity-50 cursor-not-allowed"
+                : ""
+            }   text-primary`}
+          >
+            {data?.user?.linkProfile ? "Portfolio" : "NA"}
+          </Link>
         </div>
       </div>
 

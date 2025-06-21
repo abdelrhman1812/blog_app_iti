@@ -6,7 +6,7 @@ import useLogin from "@/hooks/Actions/auth/useLogin";
 import { useFormik } from "formik";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import CardLogo from "../shared/CardLogo";
 import BtnSubmit from "./BtnSubmit";
@@ -105,6 +105,14 @@ const LoginForm = () => {
             </div>
             <ErrorMsg formik={formik} type={"password"} />
           </div>
+
+          <Link
+            to="/auth/forgot-password"
+            className="text-sm text-primary block hover:text-primary/90 hover:underline transition-colors duration-200"
+            aria-label="Reset your password"
+          >
+            Forgot Password?
+          </Link>
 
           <BtnSubmit formik={formik} isPending={isPending} text="Sign in" />
         </form>

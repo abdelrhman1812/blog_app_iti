@@ -31,7 +31,7 @@ export default function Profile() {
         <Card className="mb-6">
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row  md:items-start space-y-4 md:space-y-0 md:space-x-6">
-              {/* Avatar Section - Separated from user data */}
+              {/* Avatar Section */}
               <ImageProfile data={data} />
 
               {/* User Data Section */}

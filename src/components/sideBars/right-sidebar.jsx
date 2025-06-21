@@ -7,14 +7,14 @@ import {
 } from "@/hooks/Actions/users/useUsersCurds";
 import { Eye, Loader2, Plus } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RightSidebarSkeleton from "../Skeleton/RightSidebarSkeleton";
 
 const RightSidebar = () => {
   const { data, isPending: isSuggestionsLoading } = useGetSuggestedUsers();
   const { mutate } = usePatchFollow();
   const [loadingUserId, setLoadingUserId] = useState(null);
-
+  const navigate = useNavigate();
   const users = data?.users || [];
 
   const handleFollow = (id) => {
@@ -89,9 +89,10 @@ const RightSidebar = () => {
                   </div>
                 ))}
                 <Button
+                  onClick={() => navigate("/suggested-people")}
                   variant="ghost"
                   size="sm"
-                  className="w-full justify-center text-primary"
+                  className="w-full justify-center text-primary cursor-pointer hover:text-white hover:bg-primary/80 "
                 >
                   See All Suggestions
                 </Button>

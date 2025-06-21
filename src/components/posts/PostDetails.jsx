@@ -4,14 +4,27 @@ import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+import PostLikesModal from "./PostLikesModal";
 
 const PostDetails = ({ post }) => {
   const { data: user } = useUserAuth();
   const { mutate, isPending } = usePatchLikePost();
+  const [showLikesModal, setShowLikesModal] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   const isLiked = post?.likes?.some((like) => like._id === user?.user?._id);
 
   const [liked, setLiked] = useState(isLiked || false);
+
+  const handleShowLikesModal = (post) => {
+    setSelectedPost(post);
+    setShowLikesModal(true);
+  };
+
+  const handleCloseLikesModal = () => {
+    setShowLikesModal(false);
+    setSelectedPost(null);
+  };
 
   useEffect(() => {
     setLiked(isLiked || false);
@@ -39,10 +52,20 @@ const PostDetails = ({ post }) => {
   return (
     <>
       <Separator />
+
       <div className="flex items-center justify-between text-sm text-gray-500">
         <div className="flex items-center space-x-2">
           <span>{post?.comments?.length || 0} comments</span>
-          <span>{post?.likes?.length || 0} likes</span>
+          <span
+            className={` ${
+              post?.likes?.length > 0
+                ? "cursor-pointer"
+                : "pointer-events-none opacity-50 cursor-not-allowed"
+            }`}
+            onClick={() => handleShowLikesModal(post)}
+          >
+            {post?.likes?.length || 0} likes
+          </span>
         </div>
         <span>0 shares</span>
       </div>
@@ -97,6 +120,12 @@ const PostDetails = ({ post }) => {
         </Button>
       </div>
       <Separator />
+      {/* Post Likes Modal */}
+      <PostLikesModal
+        isOpen={showLikesModal}
+        onClose={handleCloseLikesModal}
+        post={selectedPost}
+      />
     </>
   );
 };

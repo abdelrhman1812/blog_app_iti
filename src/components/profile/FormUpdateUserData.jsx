@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Text, User } from "lucide-react";
+import { Link, Mail, MapPin, Phone, Text, User } from "lucide-react";
 
 import BtnSubmit from "../auth/BtnSubmit";
 import ErrorMsg from "../auth/ErrorMsg";
@@ -120,6 +120,27 @@ const FormUpdateUserData = ({ formik, handleCancel, pending }) => {
         </div>
         <div className="text-center">
           <ErrorMsg formik={formik} type={"bio"} />
+        </div>
+      </div>
+
+      {/* Link Profile  */}
+      <div className="space-y-2">
+        <div className="flex items-center space-x-2">
+          <Link className="w-4 h-4 text-gray-500" />
+          <Input
+            name="linkProfile"
+            className={
+              formik.touched.linkProfile && formik.errors.linkProfile
+                ? "border-destructive focus:ring-destructive"
+                : ""
+            }
+            value={formik.values.linkProfile}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+        </div>
+        <div className="text-center">
+          <ErrorMsg formik={formik} type={"linkProfile"} />
         </div>
       </div>
 

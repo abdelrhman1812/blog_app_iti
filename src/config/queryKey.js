@@ -15,6 +15,8 @@ const queryKeys = {
   register: "signup",
   login: "signin",
   user: "user",
+  forgotPassword: "/auth/forgot-password",
+  resetPassword: "/auth/reset-password",
 
   /* User */
   userProfileById: "userProfileById",

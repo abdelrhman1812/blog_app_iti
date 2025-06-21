@@ -10,7 +10,11 @@ const App = () => {
       <TanstackProvider>
         <AuthContextProvider>
           <ThemeProvider defaultTheme="light" storageKey="blog-theme">
-            <ToastContainer />
+            <ToastContainer
+              theme="light"
+              toastClassName="!bg-background !text-foreground border border-border shadow-md rounded-md"
+              progressStyle={{ background: "hsl(var(--primary))" }}
+            />
             <MainRoutes />
           </ThemeProvider>
         </AuthContextProvider>

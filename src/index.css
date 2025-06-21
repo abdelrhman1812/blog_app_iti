@@ -317,3 +317,14 @@
     background-color: var(--error);
   }
 }
+.Toastify__toast--success .Toastify__progress-bar {
+  background-color: var(--primary);
+}
+
+.Toastify__toast--success svg {
+  fill: var(--primary);
+}
+
+.Toastify__progress-bar--success {
+  background-color: var(--primary);
+}

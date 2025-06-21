@@ -15,6 +15,8 @@ const endPoints = {
   /* Auth */
   register: "/auth/signup",
   login: "/auth/signin",
+  forgotPassword: "/auth/forgot-password",
+  resetPassword: "/auth/reset-password",
 
   /* User */
   users: "/users",

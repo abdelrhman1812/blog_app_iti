@@ -6,7 +6,7 @@ const BtnSubmit = ({ formik, isPending, text }) => {
     <Button
       disabled={!(formik.isValid && formik.dirty) || isPending}
       type="submit"
-      className="w-full bg-primary hover:bg-primary/90"
+      className="w-full bg-primary hover:bg-primary/90 cursor-pointer"
     >
       {isPending ? (
         <div className="flex items-center gap-2">

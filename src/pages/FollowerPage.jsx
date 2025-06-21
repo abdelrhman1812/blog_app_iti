@@ -3,8 +3,9 @@ import { useGetUserFollower } from "@/hooks/Actions/users/useUsersCurds";
 
 import UserFollower from "@/components/profile/UserFollower";
 import UserFollowing from "@/components/profile/UserFollowing";
+import UserFollowerSkeleton from "@/components/Skeleton/UserFollowerSkeleton";
 const FollowerPage = () => {
-  const { data } = useGetUserFollower();
+  const { data, isPending } = useGetUserFollower();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -20,7 +21,11 @@ const FollowerPage = () => {
           </TabsList>
 
           <TabsContent value="followers" className="space-y-4">
-            <UserFollower data={data} />
+            {isPending ? (
+              <UserFollowerSkeleton />
+            ) : (
+              <UserFollower data={data} />
+            )}
           </TabsContent>
 
           <TabsContent value="following" className="space-y-4">

@@ -11,7 +11,7 @@ const LeftSidebar = () => {
 
   return (
     <div className="w-full h-full my-7 space-y-6 pb-20 overflow-hidden">
-      {/* User Profile Summary */}
+      {/* User Profile */}
       <Card>
         <div className="px-4 ">
           <div className="flex items-center space-x-3">
