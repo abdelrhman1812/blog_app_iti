@@ -2,7 +2,7 @@ import { useAuth } from "@/context/AuthContext";
 import useUserAuth from "@/hooks/Actions/users/useUserAuth";
 import { useNavigate } from "react-router-dom";
 import CardLogo from "../CardLogo";
-import { ModeToggle } from "../ModeToggle";
+import ModeToggle from "../ModeToggle";
 import BtnLogout from "./BtnLogout";
 import LinkProfile from "./LinkProfile";
 import MobileSidebar from "./MobileSidebar";

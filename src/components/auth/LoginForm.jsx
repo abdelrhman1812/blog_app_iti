@@ -83,7 +83,7 @@ const LoginForm = () => {
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Create a password"
+                placeholder="Enter your password"
                 className="pl-10 pr-10"
                 onChange={formik.handleChange}
                 value={formik.values.password}

@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../../ui/button";
 import CardLogo from "../CardLogo";
-import { ModeToggle } from "../ModeToggle";
+import ModeToggle from "../ModeToggle";
 
 const AuthNavbar = () => {
   const { pathname } = useLocation();

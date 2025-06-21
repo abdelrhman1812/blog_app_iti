@@ -46,7 +46,7 @@ const UserDataItems = ({ data, handleEditClick }) => {
             variant={amIFollower ? "destructive" : "default"}
             size="sm"
             onClick={handleFollowToggle}
-            className="gap-2"
+            className="gap-2 cursor-pointer"
           >
             {amIFollower ? (
               <>

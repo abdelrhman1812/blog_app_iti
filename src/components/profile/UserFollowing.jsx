@@ -47,8 +47,12 @@ const UserFollowing = ({ data }) => {
                   </Link>
 
                   <div>
-                    <p className="font-medium">{user?.userName}</p>
-                    <p className="text-sm text-gray-500">{user?.email}</p>
+                    <p className="font-medium overflow-hidden break-all">
+                      {user?.userName}
+                    </p>
+                    <p className="text-sm text-gray-500 overflow-hidden break-all">
+                      {user?.email}
+                    </p>
                   </div>
                 </div>
 
@@ -56,6 +60,7 @@ const UserFollowing = ({ data }) => {
                   <Button
                     variant="destructive"
                     size="sm"
+                    className={"cursor-pointer"}
                     onClick={() => handleUnfollow(user._id)}
                   >
                     <UserMinus className="w-4 h-4 mr-1" />

@@ -38,7 +38,7 @@ const PostLikesModal = ({ isOpen, onClose, post }) => {
             post?.likes?.map((user) => (
               <div
                 key={user.id}
-                className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-3 hover:bg-secondary/50 rounded-lg"
               >
                 <div className="flex items-center space-x-3">
                   <Avatar className="h-10 w-10">

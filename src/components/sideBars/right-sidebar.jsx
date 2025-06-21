@@ -5,7 +5,7 @@ import {
   useGetSuggestedUsers,
   usePatchFollow,
 } from "@/hooks/Actions/users/useUsersCurds";
-import { Eye, Loader2, Plus } from "lucide-react";
+import { Eye, Plus } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RightSidebarSkeleton from "../Skeleton/RightSidebarSkeleton";
@@ -62,18 +62,19 @@ const RightSidebar = () => {
                     </div>
                     <div className="flex space-x-1">
                       <Button
-                        disabled={loadingUserId === user._id}
+                        // disabled={loadingUserId === user._id}
                         size="sm"
                         variant="default"
                         className="h-8 w-8 p-0 bg-transparent text-black dark:text-white hover:bg:primary/80 hover:text-white cursor-pointer"
                         onClick={() => handleFollow(user?._id)}
                         aria-label="Follow user"
                       >
-                        {loadingUserId === user._id ? (
+                        {/* {loadingUserId === user._id ? (
                           <Loader2 className="h-4 w-4 animate-spin" />
                         ) : (
                           <Plus className="h-4 w-4 " />
-                        )}
+                        )} */}
+                        <Plus className="h-4 w-4 " />
                       </Button>
                       <Button
                         asChild

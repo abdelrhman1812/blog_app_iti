@@ -100,7 +100,7 @@ const CreateComment = ({ postId }) => {
             disabled={!(formik.isValid && formik.dirty) || isPending}
             type="submit"
             size="sm"
-            className="rounded-full h-9 px-4"
+            className="rounded-full h-9 px-4 cursor-pointer"
           >
             {isPending ? (
               <div className="flex items-center gap-2">

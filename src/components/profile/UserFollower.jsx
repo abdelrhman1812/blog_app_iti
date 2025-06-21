@@ -56,7 +56,9 @@ const UserFollower = ({ data }) => {
 
                     <div>
                       <p className="font-medium">{user?.userName}</p>
-                      <p className="text-sm text-gray-500">{user?.email}</p>
+                      <p className="text-sm text-gray-500 overflow-hidden break-all">
+                        {user?.email}
+                      </p>
                     </div>
                   </div>
 
@@ -64,6 +66,7 @@ const UserFollower = ({ data }) => {
                     <Button
                       variant={followingStatus ? "outline" : "default"}
                       size="sm"
+                      className={"cursor-pointer"}
                       onClick={() =>
                         handleFollowToggle(user._id, followingStatus)
                       }

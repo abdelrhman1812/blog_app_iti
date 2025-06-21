@@ -23,7 +23,11 @@ const MobileSidebar = ({ handleLogOut, data }) => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="default" size="sm" className="md:hidden">
+        <Button
+          variant="default"
+          size="sm"
+          className="md:hidden cursor-pointer"
+        >
           <Menu className="w-5 h-5" />
         </Button>
       </SheetTrigger>

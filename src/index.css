@@ -185,10 +185,13 @@
 :root {
   --radius: 0.65rem;
 
+  /* Primary - Your main blue */
   --primary: oklch(60.2% 0.156 252.1);
   --primary-foreground: oklch(98% 0.01 252);
-  --secondary: oklch(58.8% 0.292 8.1);
-  --secondary-foreground: oklch(98% 0.01 8);
+
+  /* Secondary - Light blue for secondary actions */
+  --secondary: oklch(75% 0.08 252.1);
+  --secondary-foreground: oklch(40% 0.12 252);
 
   --background: oklch(99% 0 0);
   --foreground: oklch(14% 0.01 286);
@@ -202,36 +205,47 @@
   --accent: oklch(96% 0.01 252);
   --accent-foreground: oklch(14% 0.01 286);
 
-  --destructive: oklch(58% 0.25 27);
+  /* Destructive - Error red */
+  --destructive: oklch(60% 0.13 25);
   --destructive-foreground: oklch(98% 0 0);
 
   --border: oklch(90% 0.01 286);
   --input: oklch(90% 0.01 286);
-  --ring: oklch(62% 0.21 260);
+  --ring: oklch(60.2% 0.156 252.1);
 
-  --chart-1: oklch(65% 0.22 41);
-  --chart-2: oklch(60% 0.12 185);
-  --chart-3: oklch(40% 0.07 227);
-  --chart-4: oklch(83% 0.19 84);
-  --chart-5: oklch(77% 0.19 70);
+  /* Social Media Action Colors */
+  --success: oklch(65% 0.15 145);
+  --success-foreground: oklch(98% 0 0);
+  --warning: oklch(65% 0.15 25);
+  --warning-foreground: oklch(98% 0 0);
+
+  /* Chart colors - social media themed */
+  --chart-1: oklch(65% 0.15 145); /* Follow green */
+  --chart-2: oklch(60.2% 0.156 252.1); /* Primary blue */
+  --chart-3: oklch(65% 0.15 25); /* Unfollow red */
+  --chart-4: oklch(75% 0.08 252.1); /* Secondary blue */
+  --chart-5: oklch(60% 0.18 15); /* Error red */
 
   --sidebar: oklch(99% 0 0);
   --sidebar-foreground: oklch(14% 0.01 286);
-  --sidebar-primary: oklch(62% 0.21 260);
+  --sidebar-primary: oklch(60.2% 0.156 252.1);
   --sidebar-primary-foreground: oklch(98% 0.01 252);
   --sidebar-accent: oklch(96% 0.01 252);
   --sidebar-accent-foreground: oklch(14% 0.01 286);
   --sidebar-border: oklch(90% 0.01 286);
-  --sidebar-ring: oklch(62% 0.21 260);
+  --sidebar-ring: oklch(60.2% 0.156 252.1);
   --skeleton-bg: #e4e6eb;
   --skeleton-highlight: #f0f2f5;
 }
 
 .dark {
-  --primary: oklch(55% 0.16 252);
+  /* Primary - Slightly darker for dark mode */
+  --primary: oklch(58% 0.15 252.1);
   --primary-foreground: oklch(98% 0.01 252);
-  --secondary: oklch(50% 0.25 8);
-  --secondary-foreground: oklch(98% 0.01 8);
+
+  /* Secondary - Darker version for dark mode */
+  --secondary: oklch(35% 0.06 252.1);
+  --secondary-foreground: oklch(85% 0.05 252);
 
   --background: oklch(18.9% 0.015 260.1);
   --foreground: oklch(98% 0 0);
@@ -245,28 +259,52 @@
   --accent: oklch(27% 0.01 286);
   --accent-foreground: oklch(98% 0 0);
 
-  --destructive: oklch(70% 0.19 22);
+  /* Destructive - Slightly lighter for dark mode */
+  --destructive: oklch(60% 0.13 25);
 
   --border: oklch(25% 0.01 286);
   --input: oklch(25% 0.01 286);
-  --ring: oklch(55% 0.16 252);
+  --ring: oklch(58% 0.15 252.1);
 
-  --chart-1: oklch(55% 0.22 41);
-  --chart-2: oklch(50% 0.15 185);
-  --chart-3: oklch(45% 0.12 227);
-  --chart-4: oklch(63% 0.27 304);
-  --chart-5: oklch(65% 0.25 16);
+  /* Social Media Action Colors - Dark mode versions */
+  --success: oklch(60% 0.13 145);
+  --success-foreground: oklch(98% 0 0);
+  --warning: oklch(60% 0.13 25);
+  --warning-foreground: oklch(98% 0 0);
+
+  /* Chart colors - dark mode versions */
+  --chart-1: oklch(60% 0.13 145); /* Follow green */
+  --chart-2: oklch(58% 0.15 252.1); /* Primary blue */
+  --chart-3: oklch(60% 0.13 25); /* Unfollow red */
+  --chart-4: oklch(35% 0.06 252.1); /* Secondary blue */
+  --chart-5: oklch(65% 0.16 15); /* Error red */
 
   --sidebar: oklch(21% 0.01 286);
   --sidebar-foreground: oklch(98% 0 0);
-  --sidebar-primary: oklch(55% 0.16 252);
+  --sidebar-primary: oklch(58% 0.15 252.1);
   --sidebar-primary-foreground: oklch(98% 0.01 252);
   --sidebar-accent: oklch(27% 0.01 286);
   --sidebar-accent-foreground: oklch(98% 0 0);
   --sidebar-border: oklch(25% 0.01 286);
-  --sidebar-ring: oklch(55% 0.16 252);
+  --sidebar-ring: oklch(58% 0.15 252.1);
   --skeleton-bg: #3e4042;
   --skeleton-highlight: #525355;
+}
+
+/* Helper classes for social media actions */
+.btn-follow {
+  background: var(--success);
+  color: var(--success-foreground);
+}
+
+.btn-unfollow {
+  background: var(--warning);
+  color: var(--warning-foreground);
+}
+
+.btn-error {
+  background: var(--destructive);
+  color: var(--destructive-foreground);
 }
 
 @layer base {

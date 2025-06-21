@@ -93,7 +93,7 @@ const PostDetails = ({ post }) => {
         <Button
           variant="default"
           size="sm"
-          className="flex-1 bg-transparent hover:bg-transparent text-muted-foreground shadow-none hover:text-blue-600 transition-colors"
+          className="flex-1 bg-transparent hover:bg-transparent text-muted-foreground shadow-none hover:text-primary transition-colors"
         >
           <MessageCircle className="w-4 h-4 mr-2" />
           Comment
@@ -103,7 +103,7 @@ const PostDetails = ({ post }) => {
         <Button
           variant="default"
           size="sm"
-          className="flex-1 hidden bg-transparent lg:flex hover:bg-transparent text-muted-foreground shadow-none hover:text-green-600 transition-colors"
+          className="flex-1 hidden bg-transparent lg:flex hover:bg-transparent text-muted-foreground shadow-none hover:text-success transition-colors"
         >
           <Share2 className="w-4 h-4 mr-2" />
           Share
