@@ -8,7 +8,7 @@ const FollowerPage = () => {
   const { data, isPending } = useGetUserFollower();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       <div className="max-w-4xl mx-auto py-6 px-4">
         <Tabs defaultValue="followers" className="space-y-6">
           <TabsList className="grid w-full grid-cols-2">

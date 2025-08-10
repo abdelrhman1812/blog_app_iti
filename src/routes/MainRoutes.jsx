@@ -9,6 +9,7 @@ import Login from "@/pages/Login";
 import Profile from "@/pages/Profile";
 import Register from "@/pages/Register";
 import ResetPassword from "@/pages/ResetPassword";
+import SearchPage from "@/pages/SearchPage";
 import SuggestedPeople from "@/pages/SuggestedPeople";
 import { RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -39,6 +40,10 @@ const MainRoutes = () => {
         {
           path: "suggested-people",
           element: <SuggestedPeople />,
+        },
+        {
+          path: "search",
+          element: <SearchPage />,
         },
       ],
     },

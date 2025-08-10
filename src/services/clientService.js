@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const clientApi = axios.create({
-  baseURL: "https://blog-app-node-js-pi.vercel.app",
-  // baseURL: "http://localhost:3000",
+  // baseURL: "https://blog-app-node-js-pi.vercel.app",
+  baseURL: "http://localhost:3000",
 });
 
 export const request = async (options, token) => {
