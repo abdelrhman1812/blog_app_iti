@@ -20,7 +20,7 @@ const CommentItem = ({ comment, postId }) => {
   const validationSchema = useMemo(() => {
     return Yup.object({
       content: Yup.string()
-        .min(5)
+        .min(1)
         .max(2000)
         .trim()
         .required("content is required"),
